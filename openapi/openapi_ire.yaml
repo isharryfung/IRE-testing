@@ -1,0 +1,269 @@
+openapi: 3.0.3
+info:
+  title: Identity Resolution Engine API
+  version: 1.0.0
+  description: >
+    Prototype REST API for the Identity Resolution Engine (IRE).
+    Supports record ingestion, deterministic + probabilistic matching,
+    golden record merging, retrieval, source lookup, and manual review decisions.
+
+paths:
+  /health:
+    get:
+      summary: API health check
+      operationId: health
+      responses:
+        "200":
+          description: API is available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: ok }
+                  service: { type: string, example: ire-api }
+
+  /ingest:
+    post:
+      summary: Ingest and normalize a source record
+      operationId: ingest
+      description: >
+        Accepts a raw source record, normalizes fields (name, email, phone),
+        and returns the normalized values. In a production system this would
+        persist to the source_records table.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngestRequest"
+            example:
+              source_name: HR
+              source_pk: EMP-12345
+              payload:
+                name: "John Smith"
+                email: "jsmith@ust.hk"
+                phone: "+852-555-123-4567"
+      responses:
+        "200":
+          description: Accepted ingest payload with normalized fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string }
+                  source_name: { type: string }
+                  source_pk: { type: string }
+                  normalized:
+                    type: object
+                    properties:
+                      name: { type: string }
+                      email: { type: string }
+                      phone: { type: string }
+
+  /match:
+    post:
+      summary: Match an incoming record against golden records
+      operationId: match
+      description: >
+        Runs deterministic matching first (exact ID match for internal sources),
+        then falls back to dynamic priority-based weighted probabilistic scoring.
+        Returns the best candidate, confidence score, per-field similarities, and
+        a merge decision.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchRequest"
+      responses:
+        "200":
+          description: Matching decision and evidence
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchResponse"
+
+  /merge:
+    post:
+      summary: Merge an incoming record into a golden record
+      operationId: merge
+      description: >
+        Applies survivorship rules (fill gaps, trust internal IDs, prefer most
+        complete name/address) and updates the in-memory golden record store.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MergeRequest"
+      responses:
+        "200":
+          description: Merged golden record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string }
+                  golden_id: { type: string }
+                  golden_record:
+                    $ref: "#/components/schemas/PersonRecord"
+        "404":
+          description: Golden record not found
+
+  /golden:
+    get:
+      summary: List all golden records
+      operationId: listGolden
+      responses:
+        "200":
+          description: List of all golden records
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PersonRecord"
+
+  /golden/{golden_id}:
+    get:
+      summary: Retrieve a golden record by ID
+      operationId: getGolden
+      parameters:
+        - name: golden_id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Golden record
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  golden_id: { type: string }
+                  record:
+                    $ref: "#/components/schemas/PersonRecord"
+        "404":
+          description: Golden record not found
+
+  /review/{task_id}/decision:
+    post:
+      summary: Submit a manual review decision
+      operationId: submitReviewDecision
+      description: >
+        Records a human reviewer's decision for a manual-review queue task.
+        Decision must be one of: approve_merge, reject_merge, create_new.
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReviewDecisionRequest"
+      responses:
+        "200":
+          description: Decision recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string }
+                  task_id: { type: string }
+                  decision: { type: string }
+        "404":
+          description: Task not found
+
+components:
+  schemas:
+    PersonRecord:
+      type: object
+      properties:
+        record_id: { type: string, nullable: true }
+        source_type: { type: string, nullable: true }
+        name: { type: string, nullable: true }
+        email: { type: string, nullable: true, format: email }
+        phone: { type: string, nullable: true }
+        hkid: { type: string, nullable: true }
+        emplid: { type: string, nullable: true }
+        studentid: { type: string, nullable: true }
+        alumniid: { type: string, nullable: true }
+        address: { type: string, nullable: true }
+
+    IngestRequest:
+      type: object
+      required: [source_name, source_pk, payload]
+      properties:
+        source_name: { type: string }
+        source_pk: { type: string }
+        payload:
+          $ref: "#/components/schemas/PersonRecord"
+
+    MatchRequest:
+      type: object
+      required: [incoming]
+      properties:
+        incoming:
+          $ref: "#/components/schemas/PersonRecord"
+        golden_records:
+          type: array
+          items:
+            $ref: "#/components/schemas/PersonRecord"
+          description: >
+            Optional list of golden records to match against.
+            If omitted, the server uses its loaded golden record store.
+
+    MatchResponse:
+      type: object
+      properties:
+        decision:
+          type: string
+          enum: [auto_merge, manual_review, create_new_golden_record]
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+        best_match_index:
+          type: integer
+          nullable: true
+        best_match_record_id:
+          type: string
+          nullable: true
+        similarities:
+          type: object
+          additionalProperties:
+            type: number
+          description: Per-field similarity scores used to compute confidence.
+        explanation:
+          type: string
+
+    MergeRequest:
+      type: object
+      required: [golden_id, incoming]
+      properties:
+        golden_id: { type: string }
+        incoming:
+          $ref: "#/components/schemas/PersonRecord"
+
+    ReviewDecisionRequest:
+      type: object
+      required: [decision, reviewer_id]
+      properties:
+        decision:
+          type: string
+          enum: [approve_merge, reject_merge, create_new]
+        reviewer_id: { type: string }
+        notes: { type: string, nullable: true }

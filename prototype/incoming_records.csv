@@ -1,0 +1,5 @@
+record_id,source_type,name,email,phone,hkid,emplid,studentid,alumniid,address
+IN-001,third_party,John Smith,jsmith@ust.hk,+852-555-123-4567,,,,,Clear Water Bay
+IN-002,internal,Jane C.,jchan@example.com,+85291234567,,E2002,,,Kowloon Tong
+IN-003,third_party,A Wong,alex.wong@ust.hk,98765432,,,,,Sai Kung
+IN-004,third_party,Pat Lee,pat.lee@example.org,+85260001111,,,,,Central
