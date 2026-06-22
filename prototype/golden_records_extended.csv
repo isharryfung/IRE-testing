@@ -1,0 +1,9 @@
+golden_id,canonical_name,canonical_email,canonical_phone,canonical_hkid,canonical_emplid,canonical_studentid,canonical_alumniid,canonical_address
+1,John Michael Smith,jsmith@ust.hk,+8525551234567,A123456(7),E1001,,,Clear Water Bay
+2,Jane Chan,jchan@example.com,+85291234567,,E2002,,,Kowloon
+3,Michael Wong,mwong@ust.hk,+85298765432,B765432(1),E3003,S3003,A3003,Hong Kong Island
+4,Alice Lee,alice.lee@alumni.ust.hk,+85261234567,,,S4004,A4004,Sha Tin
+5,David Brown,david.brown@example.com,+85262345678,,,,,Central
+6,Chan Tai Man,ctman@ust.hk,+85263456789,C111111(1),E6006,,,Mong Kok
+7,Mary Johnson,mary.johnson@ust.hk,+85264567890,D222222(2),E7007,,,Tseung Kwan O
+8,Peter Ho,peter.ho@example.com,+85265678901,,,,,Yuen Long
