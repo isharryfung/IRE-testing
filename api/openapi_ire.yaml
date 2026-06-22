@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Identity Resolution Engine API
+  version: 1.0.0
+  description: Prototype API for ingestion and identity matching decisions.
+paths:
+  /health:
+    get:
+      summary: API health check
+      responses:
+        "200":
+          description: API is available
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  service:
+                    type: string
+  /ingest:
+    post:
+      summary: Normalize and accept a source record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngestRequest"
+      responses:
+        "200":
+          description: Accepted ingest payload
+          content:
+            application/json:
+              schema:
+                type: object
+  /match:
+    post:
+      summary: Match an incoming record against golden records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchRequest"
+      responses:
+        "200":
+          description: Matching decision and evidence
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchResponse"
+components:
+  schemas:
+    PersonRecord:
+      type: object
+      properties:
+        record_id: { type: string }
+        source_type: { type: string }
+        name: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        hkid: { type: string }
+        emplid: { type: string }
+        studentid: { type: string }
+        alumniid: { type: string }
+        address: { type: string }
+    IngestRequest:
+      type: object
+      required: [source_name, source_pk, payload]
+      properties:
+        source_name: { type: string }
+        source_pk: { type: string }
+        payload:
+          $ref: "#/components/schemas/PersonRecord"
+    MatchRequest:
+      type: object
+      required: [incoming, golden_records]
+      properties:
+        incoming:
+          $ref: "#/components/schemas/PersonRecord"
+        golden_records:
+          type: array
+          items:
+            $ref: "#/components/schemas/PersonRecord"
+    MatchResponse:
+      type: object
+      properties:
+        decision:
+          type: string
+          enum: [auto_merge, manual_review, create_new_golden_record]
+        confidence:
+          type: number
+          format: float
+        best_match_index:
+          type: integer
+          nullable: true
+        best_match_record_id:
+          type: string
+          nullable: true
+        similarities:
+          type: object
+          additionalProperties:
+            type: number
+        explanation:
+          type: string
