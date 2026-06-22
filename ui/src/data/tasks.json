@@ -1,0 +1,90 @@
+[
+  {
+    "task_id": "TASK-001",
+    "status": "pending",
+    "confidence": 0.72,
+    "source_record": {
+      "record_id": "IN-001",
+      "source_type": "third_party",
+      "name": "John Smith",
+      "email": "jsmith@ust.hk",
+      "phone": "+852-555-123-4567",
+      "address": "Clear Water Bay"
+    },
+    "candidate": {
+      "record_id": "GR-001",
+      "source_type": "internal",
+      "name": "John Michael Smith",
+      "email": "jsmith@ust.hk",
+      "phone": "+8525551234567",
+      "hkid": "A123456(7)",
+      "emplid": "E1001",
+      "address": "Clear Water Bay"
+    },
+    "similarities": {
+      "email": 1.0,
+      "phone": 1.0,
+      "name": 0.714,
+      "address": 1.0
+    },
+    "reason": "Weighted dynamic-priority score produced manual_review"
+  },
+  {
+    "task_id": "TASK-002",
+    "status": "pending",
+    "confidence": 0.61,
+    "source_record": {
+      "record_id": "IN-005",
+      "source_type": "third_party",
+      "name": "Jane C.",
+      "email": "jchan@alumni.example.com",
+      "phone": "+85291234567",
+      "address": "Kowloon Tong"
+    },
+    "candidate": {
+      "record_id": "GR-002",
+      "source_type": "internal",
+      "name": "Jane Chan",
+      "email": "jchan@example.com",
+      "phone": "+85291234567",
+      "emplid": "E2002",
+      "address": "Kowloon Tong"
+    },
+    "similarities": {
+      "phone": 1.0,
+      "name": 0.727,
+      "email": 0.0,
+      "address": 1.0
+    },
+    "reason": "Weighted dynamic-priority score produced manual_review"
+  },
+  {
+    "task_id": "TASK-003",
+    "status": "approved",
+    "confidence": 0.94,
+    "source_record": {
+      "record_id": "IN-003",
+      "source_type": "third_party",
+      "name": "A Wong",
+      "email": "alex.wong@ust.hk",
+      "phone": "98765432",
+      "address": "Sai Kung"
+    },
+    "candidate": {
+      "record_id": "GR-003",
+      "source_type": "internal",
+      "name": "Alex Wong",
+      "email": "alex.wong@ust.hk",
+      "phone": "+85298765432",
+      "studentid": "S3003",
+      "address": "Sai Kung"
+    },
+    "similarities": {
+      "email": 1.0,
+      "phone": 0.85,
+      "name": 0.8,
+      "address": 1.0
+    },
+    "reason": "Auto-merged; shown here for audit reference"
+  }
+]

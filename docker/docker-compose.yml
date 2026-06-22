@@ -1,0 +1,11 @@
+services:
+  ire-api:
+    build:
+      # Build context is the repository root so COPY paths resolve correctly.
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - GOLDEN_CSV=/app/prototype/golden_records.csv

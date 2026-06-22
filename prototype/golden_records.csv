@@ -1,0 +1,4 @@
+record_id,source_type,name,email,phone,hkid,emplid,studentid,alumniid,address
+GR-001,internal,John Michael Smith,jsmith@ust.hk,+8525551234567,A123456(7),E1001,,,Clear Water Bay
+GR-002,internal,Jane Chan,jchan@example.com,+85291234567,,E2002,,,Kowloon Tong
+GR-003,internal,Alex Wong,alex.wong@ust.hk,+85298765432,,,S3003,,Sai Kung
