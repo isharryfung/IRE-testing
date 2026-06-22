@@ -1,0 +1,21 @@
+case_id,source_name,source_pk,name,email,phone,hkid,emplid,studentid,alumniid,address,expected_decision,expected_best_golden_id,scenario
+C001,HR,HR1001,John M. Smith,jsmith@ust.hk,+852-555-123-4567,A123456(7),E1001,,,Clear Water Bay,auto-merge,1,Internal ID exact match
+C002,ThirdParty,TP1001,John Michael Smith,jsmith@ust.hk,+8525551234567,A123456(7),,,,,auto-merge,1,Third-party ID plus name email exact
+C003,SIS,SIS1001,John Smith,jsmith@ust.hk,5551234567,,S1001,,,Clear Water Bay,auto-merge,1,Strong email phone name match
+C004,ExternalCRM,CRM1001,Jon Smith,jsmith@ust.hk,+8525551234567,,,,,Clear Water Bay,auto-merge,1,Slightly different name but same email phone
+C005,ExternalCRM,CRM1002,Jonathan Smith,jsmith@ust.hk,+85299999999,,,,,Clear Water Bay,manual-review,1,Same email but phone conflict
+C006,ExternalCRM,CRM1003,John Smith,john.smith@gmail.com,+8525551234567,,,,,Clear Water Bay,manual-review,1,Same phone similar name different email
+C007,ExternalCRM,CRM1004,John Smith,john.smith@gmail.com,+85211112222,,,,,Unknown,new-golden-record,,Weak match only name
+C008,HR,HR3003,Michael Wong,mwong@ust.hk,+85298765432,B765432(1),E3003,S3003,A3003,Hong Kong Island,auto-merge,3,Staff student alumni same IDs
+C009,AlumniSystem,AL4004,Alice Lee,alice.lee@alumni.ust.hk,61234567,,,S4004,A4004,Sha Tin,auto-merge,4,Alumni/student identifiers
+C010,ExternalCRM,CRM4004,Alice Li,alice.lee@alumni.ust.hk,+85261234567,,,,,Sha Tin,auto-merge,4,Similar name same email phone
+C011,ExternalCRM,CRM5001,David Brown,david.brown@example.com,+85262345678,,,,,Central,auto-merge,5,Exact email phone name
+C012,ExternalCRM,CRM5002,Dave Brown,david.brown@example.com,+85262345678,,,,,Central,auto-merge,5,Nickname with exact email phone
+C013,ExternalCRM,CRM5003,David Browne,david.brown2@example.com,+85262345678,,,,,Central,manual-review,5,Similar name same phone different email
+C014,ThirdParty,TP6006,Chan Tai Man,ctman@ust.hk,+85263456789,Z999999(9),,,,Mong Kok,manual-review,6,Conflicting HKID from third party
+C015,HR,HR6006,Chan Tai Man,ctman@ust.hk,+85263456789,C111111(1),E6006,,,Mong Kok,auto-merge,6,Trusted source HKID exact
+C016,ExternalCRM,CRM7007,Mary Johnson,m.johnson@ust.hk,+85264567890,,,,,Tseung Kwan O,manual-review,7,Similar email pattern same phone
+C017,ExternalCRM,CRM7008,Mary Jonson,mary.johnson@ust.hk,+85264567890,,,,,Tseung Kwan O,auto-merge,7,Typo name exact email phone
+C018,ExternalCRM,CRM8008,Peter Ho,peter.ho@example.com,+85265678901,,,,,Yuen Long,auto-merge,8,Exact basic identity
+C019,ExternalCRM,CRM8009,Peter H.,peterh@example.com,+85265678901,,,,,Yuen Long,manual-review,8,Partial name same phone
+C020,ExternalCRM,CRM9999,Rebecca Green,rebecca.green@example.com,+85269999999,,,,,Tai Po,new-golden-record,,Completely new person
