@@ -4,11 +4,17 @@ Prototype implementation of the Identity Resolution Engine (IRE), including a Py
 
 ## Prerequisites
 
+Run from the **repository root** so that Python can locate `prototype/ire_lib.py`.
+
+**Linux / macOS:**
 ```bash
 pip install -r prototype/requirements.txt
 ```
 
-Run from the **repository root** so that Python can locate `prototype/ire_lib.py`.
+**Windows (PowerShell):**
+```powershell
+python -m pip install -r prototype\requirements.txt
+```
 
 ---
 
@@ -29,8 +35,16 @@ Output columns: `source_pk`, `source_name`, `decision`, `best_golden_id`, `confi
 
 ## 2. API server (uvicorn)
 
+**Linux / macOS:**
 ```bash
-uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+python -m pip install -r api/requirements.txt
+python -m uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+**Windows (PowerShell):**
+```powershell
+python -m pip install -r api\requirements.txt
+python -m uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 Interactive docs: <http://localhost:8000/docs>
