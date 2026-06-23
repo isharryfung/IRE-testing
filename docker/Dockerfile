@@ -7,7 +7,7 @@ COPY api/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Copy API and prototype library
-COPY api/main.py /app/api/main.py
+COPY api /app/api
 COPY prototype/ire_lib.py /app/prototype/ire_lib.py
 COPY prototype/golden_records.csv /app/prototype/golden_records.csv
 COPY prototype/incoming_records.csv /app/prototype/incoming_records.csv

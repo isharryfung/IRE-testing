@@ -1,12 +1,9 @@
 openapi: 3.0.3
 info:
   title: Identity Resolution Engine API
-  version: 1.0.0
+  version: 1.1.0
   description: >
-    Prototype REST API for the Identity Resolution Engine (IRE).
-    Supports record ingestion, deterministic + probabilistic matching,
-    golden record merging, retrieval, source lookup, and manual review decisions.
-
+    Identity Resolution Engine MVP API with demo (CSV/in-memory) mode and Oracle persistence mode.
 paths:
   /health:
     get:
@@ -22,31 +19,21 @@ paths:
                 properties:
                   status: { type: string, example: ok }
                   service: { type: string, example: ire-api }
+                  mode: { type: string, enum: [demo, oracle] }
 
   /ingest:
     post:
-      summary: Ingest and normalize a source record
+      summary: Ingest source records and optionally run matching
       operationId: ingest
-      description: >
-        Accepts a raw source record, normalizes fields (name, email, phone),
-        and returns the normalized values. In a production system this would
-        persist to the source_records table.
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/IngestRequest"
-            example:
-              source_name: HR
-              source_pk: EMP-12345
-              payload:
-                name: "John Smith"
-                email: "jsmith@ust.hk"
-                phone: "+852-555-123-4567"
       responses:
         "200":
-          description: Accepted ingest payload with normalized fields
+          description: Source record accepted and persisted
           content:
             application/json:
               schema:
@@ -55,22 +42,17 @@ paths:
                   status: { type: string }
                   source_name: { type: string }
                   source_pk: { type: string }
+                  source_record_id: { type: integer }
+                  persistence_mode: { type: string, enum: [demo, oracle] }
                   normalized:
-                    type: object
-                    properties:
-                      name: { type: string }
-                      email: { type: string }
-                      phone: { type: string }
+                    $ref: "#/components/schemas/NormalizedFields"
+                  match:
+                    $ref: "#/components/schemas/MatchEnvelope"
 
   /match:
     post:
       summary: Match an incoming record against golden records
       operationId: match
-      description: >
-        Runs deterministic matching first (exact ID match for internal sources),
-        then falls back to dynamic priority-based weighted probabilistic scoring.
-        Returns the best candidate, confidence score, per-field similarities, and
-        a merge decision.
       requestBody:
         required: true
         content:
@@ -87,11 +69,8 @@ paths:
 
   /merge:
     post:
-      summary: Merge an incoming record into a golden record
+      summary: Merge incoming data into a golden record and write merge/link audit entries
       operationId: merge
-      description: >
-        Applies survivorship rules (fill gaps, trust internal IDs, prefer most
-        complete name/address) and updates the in-memory golden record store.
       requestBody:
         required: true
         content:
@@ -108,28 +87,11 @@ paths:
                 properties:
                   status: { type: string }
                   golden_id: { type: string }
+                  persistence_mode: { type: string, enum: [demo, oracle] }
                   golden_record:
                     $ref: "#/components/schemas/PersonRecord"
         "404":
           description: Golden record not found
-
-  /golden:
-    get:
-      summary: List all golden records
-      operationId: listGolden
-      responses:
-        "200":
-          description: List of all golden records
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count: { type: integer }
-                  records:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/PersonRecord"
 
   /golden/{golden_id}:
     get:
@@ -154,18 +116,33 @@ paths:
         "404":
           description: Golden record not found
 
+  /review/tasks:
+    get:
+      summary: List open manual review tasks
+      operationId: listReviewTasks
+      responses:
+        "200":
+          description: Open manual review tasks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count: { type: integer }
+                  tasks:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ReviewTask"
+
   /review/{task_id}/decision:
     post:
-      summary: Submit a manual review decision
+      summary: Record reviewer decision for a manual review task
       operationId: submitReviewDecision
-      description: >
-        Records a human reviewer's decision for a manual-review queue task.
-        Decision must be one of: approve_merge, reject_merge, create_new.
       parameters:
         - name: task_id
           in: path
           required: true
-          schema: { type: string }
+          schema: { type: integer }
       requestBody:
         required: true
         content:
@@ -181,8 +158,10 @@ paths:
                 type: object
                 properties:
                   status: { type: string }
-                  task_id: { type: string }
+                  task_id: { type: integer }
                   decision: { type: string }
+                  task_status: { type: string }
+                  link_created: { type: boolean }
         "404":
           description: Task not found
 
@@ -194,13 +173,48 @@ components:
         record_id: { type: string, nullable: true }
         source_type: { type: string, nullable: true }
         name: { type: string, nullable: true }
-        email: { type: string, nullable: true, format: email }
+        email: { type: string, nullable: true }
         phone: { type: string, nullable: true }
         hkid: { type: string, nullable: true }
         emplid: { type: string, nullable: true }
         studentid: { type: string, nullable: true }
         alumniid: { type: string, nullable: true }
         address: { type: string, nullable: true }
+
+    NormalizedFields:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string }
+        phone: { type: string }
+
+    Candidate:
+      type: object
+      properties:
+        golden_id: { type: string, nullable: true }
+        confidence: { type: number, format: float }
+        reason: { type: string }
+        sims:
+          type: object
+          additionalProperties:
+            type: number
+
+    MatchEnvelope:
+      type: object
+      properties:
+        decision: { type: string }
+        reason: { type: string }
+        confidence: { type: number, format: float }
+        best_match_record_id: { type: string, nullable: true }
+        sims:
+          type: object
+          additionalProperties:
+            type: number
+        candidates:
+          type: array
+          items:
+            $ref: "#/components/schemas/Candidate"
+        manual_review_task_id: { type: integer }
 
     IngestRequest:
       type: object
@@ -210,6 +224,8 @@ components:
         source_pk: { type: string }
         payload:
           $ref: "#/components/schemas/PersonRecord"
+        run_match: { type: boolean, default: false }
+        ingest_user: { type: string, default: ingest_service }
 
     MatchRequest:
       type: object
@@ -221,9 +237,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/PersonRecord"
-          description: >
-            Optional list of golden records to match against.
-            If omitted, the server uses its loaded golden record store.
+          description: Optional explicit golden candidate set.
 
     MatchResponse:
       type: object
@@ -234,8 +248,6 @@ components:
         confidence:
           type: number
           format: float
-          minimum: 0
-          maximum: 1
         best_match_index:
           type: integer
           nullable: true
@@ -246,9 +258,22 @@ components:
           type: object
           additionalProperties:
             type: number
-          description: Per-field similarity scores used to compute confidence.
         explanation:
           type: string
+        reason:
+          type: string
+        evidence:
+          type: object
+          additionalProperties:
+            type: number
+        sims:
+          type: object
+          additionalProperties:
+            type: number
+        candidates:
+          type: array
+          items:
+            $ref: "#/components/schemas/Candidate"
 
     MergeRequest:
       type: object
@@ -257,6 +282,28 @@ components:
         golden_id: { type: string }
         incoming:
           $ref: "#/components/schemas/PersonRecord"
+        source_record_id: { type: integer, nullable: true }
+        confidence: { type: number, format: float, default: 1.0 }
+        link_method: { type: string, default: manual }
+        actor: { type: string, default: system }
+        evidence:
+          type: object
+          additionalProperties:
+            type: number
+
+    ReviewTask:
+      type: object
+      properties:
+        task_id: { type: integer }
+        source_record_id: { type: integer }
+        candidate_goldens:
+          type: array
+          items: { type: string }
+        best_confidence: { type: number, format: float, nullable: true }
+        status: { type: string }
+        assigned_to: { type: string, nullable: true }
+        reviewer_decision: { type: string, nullable: true }
+        notes: { type: string, nullable: true }
 
     ReviewDecisionRequest:
       type: object
@@ -264,6 +311,7 @@ components:
       properties:
         decision:
           type: string
-          enum: [approve_merge, reject_merge, create_new]
+          enum: [accept, merge, reject, new, escalate]
         reviewer_id: { type: string }
         notes: { type: string, nullable: true }
+        golden_id: { type: string, nullable: true }

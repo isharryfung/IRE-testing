@@ -9,3 +9,8 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - GOLDEN_CSV=/app/prototype/golden_records.csv
+      - ORACLE_USER=${ORACLE_USER:-}
+      - ORACLE_PASSWORD=${ORACLE_PASSWORD:-}
+      - ORACLE_DSN=${ORACLE_DSN:-}
+      - IRE_AUTO_MERGE_THRESHOLD=${IRE_AUTO_MERGE_THRESHOLD:-0.85}
+      - IRE_MANUAL_REVIEW_THRESHOLD=${IRE_MANUAL_REVIEW_THRESHOLD:-0.50}
