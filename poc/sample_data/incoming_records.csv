@@ -1,0 +1,8 @@
+source_system,source_pk,name,email,phone,address,hkid,emplid,student_id,alumni_id
+HR,IN-001,alex chan,alex.chan@ust.hk,85290001111,clear water bay road,A123456(7),E1001,,
+THIRDPARTY,IN-002,betty wong,betty.wong@ust.hk,85290002222,hang hau road,,,S2002,
+CRM,IN-003,alex chan,alex.chan@ust.hk,85290001111,clear water bay road,Z7654321,E1001,,
+CRM,IN-004,david lee,david.lee@crm.hk,85293334444,kowloon bay,,,,
+THIRDPARTY,IN-005,kelly ngai,kelly.ngai@example.com,85298887766,kwun tong,,,,
+THIRDPARTY,IN-006,charlie ho,charlie.ho@alumni.hk,85290003333,tsim sha tsui,,,,A3003
+CRM,IN-007,john bridge,multi@ust.hk,85297776666,tseung kwan o,,,,

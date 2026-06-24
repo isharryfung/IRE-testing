@@ -1,0 +1,7 @@
+source_system,source_pk,name,email,phone,address,hkid,emplid,student_id,alumni_id
+HR,1001,alex chan,alex.chan@ust.hk,85290001111,clear water bay road,A1234567,E1001,,
+SIS,1002,betty wong,betty.wong@ust.hk,85290002222,hang hau road,,,S2002,
+ALUMNI,1003,charlie ho,charlie.ho@alumni.hk,85290003333,tsim sha tsui,,,,A3003
+CRM,1004,david lee,david.lee@crm.hk,85293334444,kowloon bay,,,,
+CRM,1005,john bridge,multi@ust.hk,85297776666,tseung kwan o,,,,
+CRM,1006,jon bridge,multi@ust.hk,85297776666,tseung kwan o,,,,

@@ -1,0 +1,6 @@
+source_code,source_name,trust_level,is_internal
+HR,Human Resources,high,1
+SIS,Student Information System,high,1
+ALUMNI,Alumni Office,high,1
+CRM,CRM Platform,medium,0
+THIRDPARTY,Third-Party Event Partner,low,0
