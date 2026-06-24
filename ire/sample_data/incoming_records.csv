@@ -1,0 +1,7 @@
+source_pk,source_system,name,email,phone,hkid,emplid,studentid,alumniid,address
+IN-001,HR,John Michael Smith,jsmith@ust.hk,85255512345,,E1001,,,Clear Water Bay
+IN-002,HR,Jane Chan,jchan@example.com,85291234567,,E2002,,,Kowloon Tong
+IN-003,ThirdParty,John Different,jsmith+vendor@example.com,85255512345,A1234567,,,,Central
+IN-004,CRM,J. Chan,jchan@example.com,85291234567,,,,,Kowloon Tong
+IN-005,ThirdParty,Bobby Chen Jr,bchen2@example.com,,,,,,Sha Tin
+IN-006,ThirdParty,Carol Smith,carol.smith@example.org,85267890123,C5555555,,,,Tseung Kwan O

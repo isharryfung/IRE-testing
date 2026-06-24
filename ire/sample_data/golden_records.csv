@@ -1,0 +1,8 @@
+golden_id,canonical_name,canonical_email,canonical_phone,canonical_hkid,canonical_emplid,canonical_studentid,canonical_alumniid,canonical_address,person_type,status
+GR-001,John Michael Smith,jsmith@ust.hk,85255512345,A1234567,E1001,,,Clear Water Bay,staff,active
+GR-002,Jane Chan,jchan@example.com,85291234567,,E2002,,,Kowloon Tong,staff,active
+GR-003,Alex Wong,alex.wong@ust.hk,85298765432,,,S3003,,Sai Kung,student,active
+GR-004,Mary Lam,mlam@alumni.ust.hk,85261111111,,,,A4004,Tseung Kwan O,alumnus,active
+GR-005,Bob Chen,bchen@example.com,6591234567,B9876543,,,,Sha Tin,person,active
+GR-006,Carol Wu,carol.wu@ust.hk,85267890123,C5555555,E5006,,,Tseung Kwan O,staff,active
+GR-007,J Chan,jchan@example.com,85291234567,,,,,Kowloon,person,active
