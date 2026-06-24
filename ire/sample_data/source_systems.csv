@@ -1,0 +1,6 @@
+system_id,name,trust_level,is_internal
+SYS-001,HR,trusted,true
+SYS-002,SIS,trusted,true
+SYS-003,Alumni,trusted,true
+SYS-004,CRM,standard,false
+SYS-005,ThirdParty,untrusted,false
