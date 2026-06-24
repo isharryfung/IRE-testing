@@ -49,6 +49,19 @@ python -m uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
 Interactive docs: <http://localhost:8000/docs>
 
+Environment variables:
+
+```bash
+IRE_AUTO_MERGE_THRESHOLD=0.85
+IRE_MANUAL_REVIEW_THRESHOLD=0.50
+ORACLE_USER=
+ORACLE_PASSWORD=
+ORACLE_DSN=
+```
+
+- If `ORACLE_USER`, `ORACLE_PASSWORD`, and `ORACLE_DSN` are all set, API runs in Oracle persistence mode.
+- If Oracle env vars are missing, API runs in demo mode using CSV/in-memory records.
+
 Key endpoints:
 
 | Method | Path | Description |
@@ -61,7 +74,15 @@ Key endpoints:
 
 ---
 
-## 3. API server (Docker Compose)
+## 3. Oracle schema setup (optional, Oracle mode)
+
+Apply the schema before starting API in Oracle mode:
+
+```bash
+sqlplus "$ORACLE_USER/$ORACLE_PASSWORD@$ORACLE_DSN" @sql/oracle_ire_schema.sql
+```
+
+## 4. API server (Docker Compose)
 
 ```bash
 docker compose -f docker/docker-compose.yml up --build
@@ -71,7 +92,18 @@ The API is available at <http://localhost:8000>.
 
 ---
 
-## 4. React manual-review UI
+## 5. Test API flow quickly
+
+```bash
+curl -s http://127.0.0.1:8000/health
+curl -s -X POST http://127.0.0.1:8000/match -H 'Content-Type: application/json' -d '{"incoming":{"source_type":"HR","name":"John Smith","email":"jsmith@ust.hk"}}'
+curl -s -X POST http://127.0.0.1:8000/ingest -H 'Content-Type: application/json' -d '{"source_name":"HR","source_pk":"1001","run_match":true,"payload":{"source_type":"HR","name":"John Smith","email":"jsmith@ust.hk"}}'
+curl -s http://127.0.0.1:8000/review/tasks
+```
+
+---
+
+## 6. React manual-review UI
 
 ```bash
 cd ui
