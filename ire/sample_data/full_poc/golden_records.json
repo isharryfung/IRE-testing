@@ -1,0 +1,284 @@
+[
+  {
+    "golden_id": "GR-001",
+    "canonical_name": "John Michael Smith",
+    "canonical_email": "john.smith@univ.example",
+    "canonical_phone": "+852 6123 4567",
+    "canonical_hkid": "A123456(7)",
+    "canonical_emplid": "E1001",
+    "canonical_studentid": "S21001",
+    "canonical_alumniid": null,
+    "canonical_address": "1 Knowledge Road, Clear Water Bay",
+    "person_type": "employee_student",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "high",
+    "provenance": {
+      "name": {
+        "source_system_name": "HR"
+      },
+      "studentid": {
+        "source_system_name": "SIS"
+      }
+    },
+    "created_at": "2024-09-01T09:00:00Z",
+    "updated_at": "2024-09-03T09:00:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-002",
+    "canonical_name": "Jane Chan Mei Lin",
+    "canonical_email": "jane.chan@alumni.example",
+    "canonical_phone": "+852 6345 6789",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": "S22002",
+    "canonical_alumniid": "AL2002",
+    "canonical_address": "8 Harbour View, Tseung Kwan O",
+    "person_type": "student_alumni",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "high",
+    "provenance": {
+      "studentid": {
+        "source_system_name": "SIS"
+      },
+      "alumniid": {
+        "source_system_name": "Alumni"
+      }
+    },
+    "created_at": "2024-09-01T09:10:00Z",
+    "updated_at": "2024-09-03T09:30:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-003",
+    "canonical_name": "David Wong Kwok Wai",
+    "canonical_email": "david.wong@univ.example",
+    "canonical_phone": "+852 6234 5678",
+    "canonical_hkid": "D234567(8)",
+    "canonical_emplid": "E3003",
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "12 Science Park, Sha Tin",
+    "person_type": "employee",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "high",
+    "provenance": {
+      "emplid": {
+        "source_system_name": "HR"
+      }
+    },
+    "created_at": "2024-09-01T09:20:00Z",
+    "updated_at": "2024-09-02T11:00:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-004",
+    "canonical_name": "Mary Lau Chi Ying",
+    "canonical_email": "mary.lau@example.com",
+    "canonical_phone": "+852 6777 8888",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": null,
+    "canonical_alumniid": "AL4004",
+    "canonical_address": "88 Clear Water Bay Road",
+    "person_type": "alumni",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "medium",
+    "provenance": {
+      "alumniid": {
+        "source_system_name": "Alumni"
+      }
+    },
+    "created_at": "2024-09-01T09:30:00Z",
+    "updated_at": "2024-09-05T14:20:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-005",
+    "canonical_name": "Peter Lee Ho Man",
+    "canonical_email": "peter.lee@crm.example",
+    "canonical_phone": "+852 6888 9999",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "19 Campus Road, Kowloon Tong",
+    "person_type": "person",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "medium",
+    "provenance": {
+      "email": {
+        "source_system_name": "CRM"
+      }
+    },
+    "created_at": "2024-09-02T08:00:00Z",
+    "updated_at": "2024-09-02T08:15:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-006",
+    "canonical_name": "Alex Chan Ho Yin",
+    "canonical_email": "alex.chan@example.com",
+    "canonical_phone": "+852 6111 2222",
+    "canonical_hkid": null,
+    "canonical_emplid": "E6006",
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "22 Ngau Tau Kok Road",
+    "person_type": "employee",
+    "status": "active",
+    "is_possible_duplicate": true,
+    "confidence_level": "medium",
+    "provenance": {
+      "emplid": {
+        "source_system_name": "HR"
+      }
+    },
+    "created_at": "2024-09-02T09:00:00Z",
+    "updated_at": "2024-09-05T10:00:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-007",
+    "canonical_name": "Alex Cheng Ho Yin",
+    "canonical_email": "alex.cheng@example.com",
+    "canonical_phone": "+852 6111 3333",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "22 Ngau Tau Kok Road",
+    "person_type": "person",
+    "status": "active",
+    "is_possible_duplicate": true,
+    "confidence_level": "medium",
+    "provenance": {
+      "name": {
+        "source_system_name": "CRM"
+      }
+    },
+    "created_at": "2024-09-02T09:05:00Z",
+    "updated_at": "2024-09-05T10:05:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-008",
+    "canonical_name": "Emily Zhao Wen",
+    "canonical_email": "emily.zhao@example.com",
+    "canonical_phone": "+852 6999 1234",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": "S88008",
+    "canonical_alumniid": null,
+    "canonical_address": "15 Tai Po Road",
+    "person_type": "student",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "medium",
+    "provenance": {
+      "studentid": {
+        "source_system_name": "SIS"
+      }
+    },
+    "created_at": "2024-09-02T09:10:00Z",
+    "updated_at": "2024-09-02T09:10:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-009",
+    "canonical_name": "Robert Chan Ming",
+    "canonical_email": "robert.chan@example.com",
+    "canonical_phone": "+852 6999 0000",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "3 University Road",
+    "person_type": "person",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "medium",
+    "provenance": {
+      "email": {
+        "source_system_name": "SIS"
+      }
+    },
+    "created_at": "2024-09-02T09:20:00Z",
+    "updated_at": "2024-09-03T15:00:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-010",
+    "canonical_name": "Sarah Ng Pui Yee",
+    "canonical_email": "sarah.ng@newcustomer.example",
+    "canonical_phone": "+852 6555 4444",
+    "canonical_hkid": null,
+    "canonical_emplid": null,
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "77 Kowloon Bay Road",
+    "person_type": "person",
+    "status": "active",
+    "is_possible_duplicate": false,
+    "confidence_level": "low",
+    "provenance": {
+      "email": {
+        "source_system_name": "CRM"
+      }
+    },
+    "created_at": "2024-09-04T08:45:00Z",
+    "updated_at": "2024-09-04T08:45:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-011",
+    "canonical_name": "Michael Cheung Ka Ming",
+    "canonical_email": "michael.cheung@example.com",
+    "canonical_phone": "+852 6000 1111",
+    "canonical_hkid": null,
+    "canonical_emplid": "E1111",
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "18 Research Lane",
+    "person_type": "employee",
+    "status": "active",
+    "is_possible_duplicate": true,
+    "confidence_level": "medium",
+    "provenance": {
+      "emplid": {
+        "source_system_name": "HR"
+      }
+    },
+    "created_at": "2024-09-02T09:30:00Z",
+    "updated_at": "2024-09-06T09:00:00Z",
+    "created_by": "system"
+  },
+  {
+    "golden_id": "GR-012",
+    "canonical_name": "Mike Cheung K M",
+    "canonical_email": "mike.cheung@example.com",
+    "canonical_phone": "+852 6000 1111",
+    "canonical_hkid": null,
+    "canonical_emplid": "E1112",
+    "canonical_studentid": null,
+    "canonical_alumniid": null,
+    "canonical_address": "18 Research Lane",
+    "person_type": "person",
+    "status": "active",
+    "is_possible_duplicate": true,
+    "confidence_level": "medium",
+    "provenance": {
+      "email": {
+        "source_system_name": "CRM"
+      }
+    },
+    "created_at": "2024-09-02T09:35:00Z",
+    "updated_at": "2024-09-06T09:00:00Z",
+    "created_by": "system"
+  }
+]

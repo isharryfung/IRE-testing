@@ -1,62 +1,60 @@
-import React, { useState } from "react";
-import ReviewTask from "./ReviewTask.jsx";
-import initialTasks from "./data/tasks.json";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import IngestionCreate from './pages/IngestionCreate.jsx';
+import IngestionBatchList from './pages/IngestionBatchList.jsx';
+import IngestionBatchDetail from './pages/IngestionBatchDetail.jsx';
+import GoldenSearch from './pages/GoldenSearch.jsx';
+import GoldenDetail from './pages/GoldenDetail.jsx';
+import SourceSearch from './pages/SourceSearch.jsx';
+import SourceDetail from './pages/SourceDetail.jsx';
+import MatchCandidateDetail from './pages/MatchCandidateDetail.jsx';
+import ManualReviewQueue from './pages/ManualReviewQueue.jsx';
+import ManualReviewDetail from './pages/ManualReviewDetail.jsx';
+import DuplicateGoldenQueue from './pages/DuplicateGoldenQueue.jsx';
+import GoldenMergeReview from './pages/GoldenMergeReview.jsx';
+import MatchingFeatureSettings from './pages/MatchingFeatureSettings.jsx';
+import MatchingRuleList from './pages/MatchingRuleList.jsx';
+import MatchingRuleDetail from './pages/MatchingRuleDetail.jsx';
+import RuleSimulation from './pages/RuleSimulation.jsx';
+import ThresholdSettings from './pages/ThresholdSettings.jsx';
+import SurvivorshipRuleList from './pages/SurvivorshipRuleList.jsx';
+import SurvivorshipRuleDetail from './pages/SurvivorshipRuleDetail.jsx';
+import SurvivorshipPreview from './pages/SurvivorshipPreview.jsx';
+import SourceSystemList from './pages/SourceSystemList.jsx';
+import AuditHistory from './pages/AuditHistory.jsx';
 
 export default function App() {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [selectedId, setSelectedId] = useState(tasks[0]?.task_id ?? null);
-
-  const selectedTask = tasks.find((t) => t.task_id === selectedId) ?? null;
-
-  function handleDecision(taskId, decision) {
-    setTasks((prev) =>
-      prev.map((t) => (t.task_id === taskId ? { ...t, status: decision } : t))
-    );
-  }
-
-  const pendingCount = tasks.filter((t) => t.status === "pending").length;
-
   return (
-    <main className="app-shell">
-      <h1>Identity Resolution Engine — Manual Review</h1>
-      <p>
-        <strong>{pendingCount}</strong> task{pendingCount !== 1 ? "s" : ""} pending review.
-      </p>
-
-      <div style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
-        {/* Queue sidebar */}
-        <aside style={{ minWidth: 200 }}>
-          <h3 style={{ marginBottom: "0.5rem" }}>Review Queue</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {tasks.map((t) => (
-              <li
-                key={t.task_id}
-                onClick={() => setSelectedId(t.task_id)}
-                style={{
-                  padding: "8px 12px",
-                  marginBottom: 4,
-                  cursor: "pointer",
-                  borderRadius: 4,
-                  background: t.task_id === selectedId ? "#0d6efd" : "#f0f0f0",
-                  color: t.task_id === selectedId ? "#fff" : "#333",
-                  opacity: t.status !== "pending" ? 0.6 : 1,
-                }}
-              >
-                <div style={{ fontWeight: 600 }}>{t.task_id}</div>
-                <div style={{ fontSize: "0.8em" }}>
-                  {(t.confidence * 100).toFixed(1)}% · {t.status}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </aside>
-
-        {/* Detail panel */}
-        <section style={{ flex: 1 }}>
-          <ReviewTask task={selectedTask} onDecision={handleDecision} />
-        </section>
-      </div>
-    </main>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Navigate to="/" replace />} />
+          <Route path="/ingestion/new" element={<IngestionCreate />} />
+          <Route path="/ingestion/batches" element={<IngestionBatchList />} />
+          <Route path="/ingestion/batches/:batchId" element={<IngestionBatchDetail />} />
+          <Route path="/golden" element={<GoldenSearch />} />
+          <Route path="/golden/:goldenId" element={<GoldenDetail />} />
+          <Route path="/sources" element={<SourceSearch />} />
+          <Route path="/sources/:sourceRecordId" element={<SourceDetail />} />
+          <Route path="/match-candidates/:candidateId" element={<MatchCandidateDetail />} />
+          <Route path="/manual-review" element={<ManualReviewQueue />} />
+          <Route path="/manual-review/:taskId" element={<ManualReviewDetail />} />
+          <Route path="/duplicates" element={<DuplicateGoldenQueue />} />
+          <Route path="/duplicates/:duplicateId" element={<GoldenMergeReview />} />
+          <Route path="/settings/matching-features" element={<MatchingFeatureSettings />} />
+          <Route path="/settings/matching-rules" element={<MatchingRuleList />} />
+          <Route path="/settings/matching-rules/:ruleId" element={<MatchingRuleDetail />} />
+          <Route path="/settings/rule-simulation" element={<RuleSimulation />} />
+          <Route path="/settings/thresholds" element={<ThresholdSettings />} />
+          <Route path="/settings/survivorship" element={<SurvivorshipRuleList />} />
+          <Route path="/settings/survivorship/:ruleId" element={<SurvivorshipRuleDetail />} />
+          <Route path="/settings/survivorship-preview" element={<SurvivorshipPreview />} />
+          <Route path="/settings/source-systems" element={<SourceSystemList />} />
+          <Route path="/audit" element={<AuditHistory />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
-

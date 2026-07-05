@@ -1,0 +1,115 @@
+[
+  {
+    "task_id": "TASK-001",
+    "source_record_id": "SRC-TP-001",
+    "candidate_golden_ids": [
+      "GR-003"
+    ],
+    "best_confidence": 0.78,
+    "priority": "high",
+    "status": "assigned",
+    "reason_code": "tier1_conflict",
+    "assigned_to": "reviewer.demo",
+    "created_at": "2024-09-03T10:05:00Z",
+    "resolved_at": null,
+    "notes": "Third-party record claims conflicting HKID.",
+    "safety_flags": [
+      "tier1_conflict",
+      "untrusted_source"
+    ]
+  },
+  {
+    "task_id": "TASK-002",
+    "source_record_id": "SRC-SIS-004",
+    "candidate_golden_ids": [
+      "GR-006",
+      "GR-007"
+    ],
+    "best_confidence": 0.86,
+    "priority": "high",
+    "status": "open",
+    "reason_code": "multiple_high_candidates",
+    "assigned_to": null,
+    "created_at": "2024-09-03T10:10:00Z",
+    "resolved_at": null,
+    "notes": "Ambiguous Alex person match in admissions feed.",
+    "safety_flags": [
+      "multiple_high_candidates",
+      "low_score_gap"
+    ]
+  },
+  {
+    "task_id": "TASK-003",
+    "source_record_id": "SRC-TP-002",
+    "candidate_golden_ids": [
+      "GR-005"
+    ],
+    "best_confidence": 0.84,
+    "priority": "medium",
+    "status": "open",
+    "reason_code": "untrusted_source",
+    "assigned_to": null,
+    "created_at": "2024-09-03T10:15:00Z",
+    "resolved_at": null,
+    "notes": "Third-party contact requires supporting evidence before merge.",
+    "safety_flags": [
+      "untrusted_source"
+    ]
+  },
+  {
+    "task_id": "TASK-004",
+    "source_record_id": "SRC-TP-004",
+    "candidate_golden_ids": [
+      "GR-011",
+      "GR-012"
+    ],
+    "best_confidence": 0.83,
+    "priority": "medium",
+    "status": "resolved",
+    "reason_code": "multiple_high_candidates",
+    "assigned_to": "reviewer.demo",
+    "created_at": "2024-09-03T10:20:00Z",
+    "resolved_at": "2024-09-03T12:05:00Z",
+    "notes": "Reviewer selected the HR-backed golden.",
+    "safety_flags": [
+      "multiple_high_candidates"
+    ]
+  },
+  {
+    "task_id": "TASK-005",
+    "source_record_id": "SRC-CRM-005",
+    "candidate_golden_ids": [
+      "GR-006",
+      "GR-007"
+    ],
+    "best_confidence": 0.81,
+    "priority": "low",
+    "status": "resolved",
+    "reason_code": "low_score_gap",
+    "assigned_to": "steward.demo",
+    "created_at": "2024-09-03T10:25:00Z",
+    "resolved_at": "2024-09-03T15:10:00Z",
+    "notes": "New golden requested because neither Alex candidate was confident enough.",
+    "safety_flags": [
+      "low_score_gap"
+    ]
+  },
+  {
+    "task_id": "TASK-006",
+    "source_record_id": "SRC-CRM-007",
+    "candidate_golden_ids": [
+      "GR-004"
+    ],
+    "best_confidence": 0.61,
+    "priority": "medium",
+    "status": "resolved",
+    "reason_code": "manual_override",
+    "assigned_to": "data.steward",
+    "created_at": "2024-09-04T14:00:00Z",
+    "resolved_at": "2024-09-05T14:20:00Z",
+    "notes": "Link removed after stewardship review.",
+    "safety_flags": [
+      "low_score_gap"
+    ]
+  }
+]

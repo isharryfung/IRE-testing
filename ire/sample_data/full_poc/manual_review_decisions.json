@@ -1,0 +1,29 @@
+[
+  {
+    "decision_id": "MRD-001",
+    "task_id": "TASK-004",
+    "reviewer": "reviewer.demo",
+    "decision": "accept_merge",
+    "selected_golden_id": "GR-011",
+    "notes": "Preferred the HR-backed employee golden.",
+    "decided_at": "2024-09-03T12:05:00Z"
+  },
+  {
+    "decision_id": "MRD-002",
+    "task_id": "TASK-005",
+    "reviewer": "steward.demo",
+    "decision": "create_new_golden",
+    "selected_golden_id": null,
+    "notes": "Preserved CRM volunteer as a separate person.",
+    "decided_at": "2024-09-03T15:10:00Z"
+  },
+  {
+    "decision_id": "MRD-003",
+    "task_id": "TASK-006",
+    "reviewer": "data.steward",
+    "decision": "manual_override",
+    "selected_golden_id": null,
+    "notes": "Unlinked legacy CRM record from Mary Lau.",
+    "decided_at": "2024-09-05T14:20:00Z"
+  }
+]

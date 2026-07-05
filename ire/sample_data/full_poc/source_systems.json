@@ -1,0 +1,52 @@
+[
+  {
+    "system_id": "SYS-001",
+    "name": "HR",
+    "description": "Internal HR master for employees and staff identities.",
+    "trust_level": "trusted",
+    "is_internal": true,
+    "auto_merge_allowed": true,
+    "is_active": true,
+    "created_at": "2024-09-01T08:00:00Z"
+  },
+  {
+    "system_id": "SYS-002",
+    "name": "SIS",
+    "description": "Student Information System for active students and applicants.",
+    "trust_level": "trusted",
+    "is_internal": true,
+    "auto_merge_allowed": true,
+    "is_active": true,
+    "created_at": "2024-09-01T08:05:00Z"
+  },
+  {
+    "system_id": "SYS-003",
+    "name": "Alumni",
+    "description": "Alumni engagement platform with post-graduation attributes.",
+    "trust_level": "trusted",
+    "is_internal": true,
+    "auto_merge_allowed": true,
+    "is_active": true,
+    "created_at": "2024-09-01T08:10:00Z"
+  },
+  {
+    "system_id": "SYS-004",
+    "name": "CRM",
+    "description": "External CRM and outreach contacts from marketing workflows.",
+    "trust_level": "standard",
+    "is_internal": false,
+    "auto_merge_allowed": true,
+    "is_active": true,
+    "created_at": "2024-09-01T08:15:00Z"
+  },
+  {
+    "system_id": "SYS-005",
+    "name": "ThirdParty",
+    "description": "Untrusted third-party enrichment feed requiring corroboration.",
+    "trust_level": "untrusted",
+    "is_internal": false,
+    "auto_merge_allowed": false,
+    "is_active": true,
+    "created_at": "2024-09-01T08:20:00Z"
+  }
+]

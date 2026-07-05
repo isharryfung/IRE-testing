@@ -1,0 +1,537 @@
+[
+  {
+    "source_record_id": "SRC-HR-001",
+    "source_system_id": "SYS-001",
+    "ingestion_batch_id": "BATCH-001",
+    "source_pk": "HR-EMP-1001",
+    "raw_name": "John Michael Smith",
+    "raw_email": "john.smith@univ.example",
+    "raw_phone": "+852 6123 4567",
+    "raw_address": "1 Knowledge Road, Clear Water Bay",
+    "raw_hkid": "A123456(7)",
+    "raw_emplid": "E1001",
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "department": "IT"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T09:01:00Z",
+    "ingest_user": "hr.loader"
+  },
+  {
+    "source_record_id": "SRC-HR-002",
+    "source_system_id": "SYS-001",
+    "ingestion_batch_id": "BATCH-001",
+    "source_pk": "HR-EMP-3003",
+    "raw_name": "David Wong Kwok Wai",
+    "raw_email": "david.wong@univ.example",
+    "raw_phone": "+852 6234 5678",
+    "raw_address": "12 Science Park, Sha Tin",
+    "raw_hkid": "D234567(8)",
+    "raw_emplid": "E3003",
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "department": "Finance"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T09:02:00Z",
+    "ingest_user": "hr.loader"
+  },
+  {
+    "source_record_id": "SRC-HR-003",
+    "source_system_id": "SYS-001",
+    "ingestion_batch_id": "BATCH-001",
+    "source_pk": "HR-EMP-1111",
+    "raw_name": "Michael Cheung Ka Ming",
+    "raw_email": "michael.cheung@example.com",
+    "raw_phone": "+852 6000 1111",
+    "raw_address": "18 Research Lane",
+    "raw_hkid": null,
+    "raw_emplid": "E1111",
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "department": "Research"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T09:03:00Z",
+    "ingest_user": "hr.loader"
+  },
+  {
+    "source_record_id": "SRC-HR-004",
+    "source_system_id": "SYS-001",
+    "ingestion_batch_id": "BATCH-001",
+    "source_pk": "HR-EMP-5005",
+    "raw_name": "Alice Ho Yuk Lin",
+    "raw_email": "alice.ho@univ.example",
+    "raw_phone": "+852 6555 0001",
+    "raw_address": "44 Discovery Park",
+    "raw_hkid": null,
+    "raw_emplid": "E5005",
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "department": "Library"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T09:04:00Z",
+    "ingest_user": "hr.loader"
+  },
+  {
+    "source_record_id": "SRC-HR-005",
+    "source_system_id": "SYS-001",
+    "ingestion_batch_id": "BATCH-001",
+    "source_pk": "HR-EMP-6006",
+    "raw_name": "Alex Chan Ho Yin",
+    "raw_email": "alex.chan@example.com",
+    "raw_phone": "+852 6111 2222",
+    "raw_address": "22 Ngau Tau Kok Road",
+    "raw_hkid": null,
+    "raw_emplid": "E6006",
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "department": "Engineering"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T09:05:00Z",
+    "ingest_user": "hr.loader"
+  },
+  {
+    "source_record_id": "SRC-SIS-001",
+    "source_system_id": "SYS-002",
+    "ingestion_batch_id": "BATCH-002",
+    "source_pk": "SIS-STU-21001",
+    "raw_name": "John M. Smith",
+    "raw_email": "john.smith@student.example",
+    "raw_phone": "+852 6123 4567",
+    "raw_address": "1 Knowledge Road, Clear Water Bay",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": "S21001",
+    "raw_alumniid": null,
+    "raw_payload": {
+      "programme": "MBA"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T10:10:00Z",
+    "ingest_user": "sis.loader"
+  },
+  {
+    "source_record_id": "SRC-SIS-002",
+    "source_system_id": "SYS-002",
+    "ingestion_batch_id": "BATCH-002",
+    "source_pk": "SIS-STU-22002",
+    "raw_name": "Jane Chan Mei Lin",
+    "raw_email": "jane.chan@student.example",
+    "raw_phone": "+852 6345 6789",
+    "raw_address": "8 Harbour View, Tseung Kwan O",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": "S22002",
+    "raw_alumniid": null,
+    "raw_payload": {
+      "programme": "BBA"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T10:11:00Z",
+    "ingest_user": "sis.loader"
+  },
+  {
+    "source_record_id": "SRC-SIS-003",
+    "source_system_id": "SYS-002",
+    "ingestion_batch_id": "BATCH-002",
+    "source_pk": "SIS-STU-88008",
+    "raw_name": "Emily Zhao Wen",
+    "raw_email": "emily.zhao@example.com",
+    "raw_phone": "+852 6999 1234",
+    "raw_address": "15 Tai Po Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": "S88008",
+    "raw_alumniid": null,
+    "raw_payload": {
+      "programme": "MSc"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T10:12:00Z",
+    "ingest_user": "sis.loader"
+  },
+  {
+    "source_record_id": "SRC-SIS-004",
+    "source_system_id": "SYS-002",
+    "ingestion_batch_id": "BATCH-002",
+    "source_pk": "SIS-STU-70070",
+    "raw_name": "Alex H Y Chan",
+    "raw_email": "alex.hy@students.example",
+    "raw_phone": "+852 6111 2323",
+    "raw_address": "22 Ngau Tau Kok Rd",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "programme": "Exchange"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [
+      "studentid missing from application extract"
+    ],
+    "ingest_ts": "2024-09-01T10:13:00Z",
+    "ingest_user": "sis.loader"
+  },
+  {
+    "source_record_id": "SRC-SIS-005",
+    "source_system_id": "SYS-002",
+    "ingestion_batch_id": "BATCH-002",
+    "source_pk": "SIS-STU-99009",
+    "raw_name": "Robert Chan Ming",
+    "raw_email": "robert.chan@example.com",
+    "raw_phone": "+852 6999 0000",
+    "raw_address": "3 University Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "programme": "Short course"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T10:14:00Z",
+    "ingest_user": "sis.loader"
+  },
+  {
+    "source_record_id": "SRC-AL-001",
+    "source_system_id": "SYS-003",
+    "ingestion_batch_id": "BATCH-003",
+    "source_pk": "AL-2002",
+    "raw_name": "Jane Chan Mei Lin",
+    "raw_email": "jane.chan@alumni.example",
+    "raw_phone": "+852 6345 6789",
+    "raw_address": "8 Harbour View, Tseung Kwan O",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": "AL2002",
+    "raw_payload": {
+      "chapter": "Hong Kong"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T11:00:00Z",
+    "ingest_user": "alumni.loader"
+  },
+  {
+    "source_record_id": "SRC-AL-002",
+    "source_system_id": "SYS-003",
+    "ingestion_batch_id": "BATCH-003",
+    "source_pk": "AL-4004",
+    "raw_name": "Mary Lau Chi Ying",
+    "raw_email": "mary.lau@example.com",
+    "raw_phone": "+852 6777 8888",
+    "raw_address": "88 Clear Water Bay Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": "AL4004",
+    "raw_payload": {
+      "chapter": "Shenzhen"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T11:01:00Z",
+    "ingest_user": "alumni.loader"
+  },
+  {
+    "source_record_id": "SRC-AL-003",
+    "source_system_id": "SYS-003",
+    "ingestion_batch_id": "BATCH-003",
+    "source_pk": "AL-8800",
+    "raw_name": "Sarah Ng Pui Yee",
+    "raw_email": "sarah.ng@oldmail.example",
+    "raw_phone": "+852 6555 4444",
+    "raw_address": "77 Kowloon Bay Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": "AL8800",
+    "raw_payload": {
+      "chapter": "Macau"
+    },
+    "ingestion_status": "failed",
+    "validation_warnings": [
+      "alumniid not recognised in target system"
+    ],
+    "ingest_ts": "2024-09-01T11:02:00Z",
+    "ingest_user": "alumni.loader"
+  },
+  {
+    "source_record_id": "SRC-AL-004",
+    "source_system_id": "SYS-003",
+    "ingestion_batch_id": "BATCH-003",
+    "source_pk": "AL-1111",
+    "raw_name": "Michael Cheung",
+    "raw_email": "michael.cheung@example.com",
+    "raw_phone": "+852 6000 1111",
+    "raw_address": "18 Research Lane",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": "AL1111",
+    "raw_payload": {
+      "chapter": "London"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-01T11:03:00Z",
+    "ingest_user": "alumni.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-001",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9001",
+    "raw_name": "Peter Lee Ho Man",
+    "raw_email": "peter.lee@crm.example",
+    "raw_phone": "+852 6888 9999",
+    "raw_address": "19 Campus Road, Kowloon Tong",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "donor"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-02T08:10:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-002",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9002",
+    "raw_name": "Sarah Ng Pui Yee",
+    "raw_email": "sarah.ng@newcustomer.example",
+    "raw_phone": "+852 6555 4444",
+    "raw_address": "77 Kowloon Bay Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "lead"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-04T08:44:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-003",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9003",
+    "raw_name": "John Smith",
+    "raw_email": "john.smith@univ.example",
+    "raw_phone": "+852 6123 4567",
+    "raw_address": "1 Knowledge Road, Clear Water Bay",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "event attendee"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-02T08:11:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-004",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9004",
+    "raw_name": "Mary Lau Chi Ying",
+    "raw_email": "mary.lau@example.com",
+    "raw_phone": "+852 6777 8888",
+    "raw_address": "88 Clear Water Bay Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "mentor"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-02T08:12:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-005",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9005",
+    "raw_name": "Alex C H Yin",
+    "raw_email": "alex.hoyin@example.com",
+    "raw_phone": "+852 6111 2727",
+    "raw_address": "22 Ngau Tau Kok Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "volunteer"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-02T08:13:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-006",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9006",
+    "raw_name": "Mike Cheung K M",
+    "raw_email": "mike.cheung@example.com",
+    "raw_phone": "+852 6000 1111",
+    "raw_address": "18 Research Lane",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "lead"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-02T08:14:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-CRM-007",
+    "source_system_id": "SYS-004",
+    "ingestion_batch_id": "BATCH-004",
+    "source_pk": "CRM-9007",
+    "raw_name": "Mary L.",
+    "raw_email": "mary.lau@example.com",
+    "raw_phone": "+852 6777 0000",
+    "raw_address": "Flat B, 88 Clear Water Bay Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "segment": "legacy"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [
+      "legacy record missing strong identifiers"
+    ],
+    "ingest_ts": "2024-09-02T08:15:00Z",
+    "ingest_user": "crm.loader"
+  },
+  {
+    "source_record_id": "SRC-TP-001",
+    "source_system_id": "SYS-005",
+    "ingestion_batch_id": "BATCH-005",
+    "source_pk": "TP-3003",
+    "raw_name": "David Wong Kwok Wai",
+    "raw_email": "david.wong@vendor.example",
+    "raw_phone": "+852 6234 5678",
+    "raw_address": "12 Science Park, Sha Tin",
+    "raw_hkid": "X999999(9)",
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "vendor": "EnrichCo"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [
+      "third-party HKID conflicts with trusted HR source"
+    ],
+    "ingest_ts": "2024-09-03T10:00:00Z",
+    "ingest_user": "tp.loader"
+  },
+  {
+    "source_record_id": "SRC-TP-002",
+    "source_system_id": "SYS-005",
+    "ingestion_batch_id": "BATCH-005",
+    "source_pk": "TP-5005",
+    "raw_name": "Peter Lee Ho Man",
+    "raw_email": "peter.lee@crm.example",
+    "raw_phone": "+852 6888 9999",
+    "raw_address": "19 Campus Road, Kowloon Tong",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "vendor": "EnrichCo"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [
+      "third-party feed needs corroboration"
+    ],
+    "ingest_ts": "2024-09-03T10:01:00Z",
+    "ingest_user": "tp.loader"
+  },
+  {
+    "source_record_id": "SRC-TP-003",
+    "source_system_id": "SYS-005",
+    "ingestion_batch_id": "BATCH-005",
+    "source_pk": "TP-6006",
+    "raw_name": "Alex Chan H Y",
+    "raw_email": "alex.chan.hoyin@partner.example",
+    "raw_phone": "+852 6111 2222",
+    "raw_address": "22 Ngau Tau Kok Road",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "vendor": "PartnerX"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-03T10:02:00Z",
+    "ingest_user": "tp.loader"
+  },
+  {
+    "source_record_id": "SRC-TP-004",
+    "source_system_id": "SYS-005",
+    "ingestion_batch_id": "BATCH-005",
+    "source_pk": "TP-1111",
+    "raw_name": "Michael Cheung",
+    "raw_email": "mike.cheung@example.com",
+    "raw_phone": "+852 6000 1111",
+    "raw_address": "18 Research Lane",
+    "raw_hkid": null,
+    "raw_emplid": null,
+    "raw_studentid": null,
+    "raw_alumniid": null,
+    "raw_payload": {
+      "vendor": "PartnerY"
+    },
+    "ingestion_status": "processed",
+    "validation_warnings": [],
+    "ingest_ts": "2024-09-03T10:03:00Z",
+    "ingest_user": "tp.loader"
+  }
+]

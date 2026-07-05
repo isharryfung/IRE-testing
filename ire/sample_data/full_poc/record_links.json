@@ -1,0 +1,290 @@
+[
+  {
+    "link_id": "LINK-001",
+    "source_record_id": "SRC-HR-001",
+    "golden_id": "GR-001",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-001",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact HR EmplId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T09:05:00Z",
+    "updated_at": "2024-09-01T09:05:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-002",
+    "source_record_id": "SRC-SIS-001",
+    "golden_id": "GR-001",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-002",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact SIS StudentId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T10:10:00Z",
+    "updated_at": "2024-09-01T10:10:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-003",
+    "source_record_id": "SRC-SIS-002",
+    "golden_id": "GR-002",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-003",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact SIS StudentId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T10:11:00Z",
+    "updated_at": "2024-09-01T10:11:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-004",
+    "source_record_id": "SRC-AL-001",
+    "golden_id": "GR-002",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-004",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact AlumniId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T11:00:00Z",
+    "updated_at": "2024-09-01T11:00:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-005",
+    "source_record_id": "SRC-HR-002",
+    "golden_id": "GR-003",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-005",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact HR EmplId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T09:06:00Z",
+    "updated_at": "2024-09-01T09:06:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-006",
+    "source_record_id": "SRC-AL-002",
+    "golden_id": "GR-004",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-006",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact AlumniId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T11:01:00Z",
+    "updated_at": "2024-09-01T11:01:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-007",
+    "source_record_id": "SRC-CRM-001",
+    "golden_id": "GR-005",
+    "link_status": "linked",
+    "link_method": "strong-contact-match",
+    "confidence": 0.94,
+    "candidate_id": "CAND-007",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Strong name/email/phone auto-merge"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-02T08:10:30Z",
+    "updated_at": "2024-09-02T08:10:30Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-008",
+    "source_record_id": "SRC-HR-005",
+    "golden_id": "GR-006",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-008",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact HR EmplId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T09:07:00Z",
+    "updated_at": "2024-09-01T09:07:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-009",
+    "source_record_id": "SRC-SIS-003",
+    "golden_id": "GR-008",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-009",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact StudentId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T10:12:00Z",
+    "updated_at": "2024-09-01T10:12:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-010",
+    "source_record_id": "SRC-SIS-005",
+    "golden_id": "GR-009",
+    "link_status": "linked",
+    "link_method": "strong-contact-match",
+    "confidence": 0.88,
+    "candidate_id": "CAND-010",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Course lead matched on contact details"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T10:14:00Z",
+    "updated_at": "2024-09-01T10:14:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-011",
+    "source_record_id": "SRC-CRM-002",
+    "golden_id": "GR-010",
+    "link_status": "linked",
+    "link_method": "new-golden-record",
+    "confidence": 0.42,
+    "candidate_id": null,
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Weak match created new golden record"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-04T08:45:00Z",
+    "updated_at": "2024-09-04T08:45:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-012",
+    "source_record_id": "SRC-HR-003",
+    "golden_id": "GR-011",
+    "link_status": "linked",
+    "link_method": "deterministic_match",
+    "confidence": 1.0,
+    "candidate_id": "CAND-011",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Exact HR EmplId match"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-01T09:08:00Z",
+    "updated_at": "2024-09-01T09:08:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-013",
+    "source_record_id": "SRC-CRM-006",
+    "golden_id": "GR-012",
+    "link_status": "linked",
+    "link_method": "strong-contact-match",
+    "confidence": 0.87,
+    "candidate_id": "CAND-012",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "Legacy CRM lead matched to duplicate golden"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-02T08:14:00Z",
+    "updated_at": "2024-09-02T08:14:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-014",
+    "source_record_id": "SRC-CRM-004",
+    "golden_id": "GR-004",
+    "link_status": "linked",
+    "link_method": "strong-contact-match",
+    "confidence": 0.89,
+    "candidate_id": "CAND-013",
+    "review_task_id": null,
+    "evidence_json": {
+      "story": "CRM mentor matched to alumni golden"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-02T08:12:00Z",
+    "updated_at": "2024-09-02T08:12:00Z",
+    "created_by": "system",
+    "is_active": true
+  },
+  {
+    "link_id": "LINK-015",
+    "source_record_id": "SRC-CRM-007",
+    "golden_id": "GR-004",
+    "link_status": "unlinked",
+    "link_method": "legacy-match",
+    "confidence": 0.61,
+    "candidate_id": "CAND-014",
+    "review_task_id": "TASK-006",
+    "evidence_json": {
+      "story": "Legacy CRM record later unlinked"
+    },
+    "unlink_reason": "Legacy contact belonged to a different household",
+    "created_at": "2024-09-02T08:15:00Z",
+    "updated_at": "2024-09-05T14:20:00Z",
+    "created_by": "data.steward",
+    "is_active": false
+  },
+  {
+    "link_id": "LINK-016",
+    "source_record_id": "SRC-TP-004",
+    "golden_id": "GR-011",
+    "link_status": "linked",
+    "link_method": "manual_override",
+    "confidence": 0.76,
+    "candidate_id": "CAND-020",
+    "review_task_id": "TASK-004",
+    "evidence_json": {
+      "story": "Reviewer selected HR-backed golden after duplicate review"
+    },
+    "unlink_reason": null,
+    "created_at": "2024-09-03T12:05:00Z",
+    "updated_at": "2024-09-03T12:05:00Z",
+    "created_by": "reviewer.demo",
+    "is_active": true
+  }
+]
