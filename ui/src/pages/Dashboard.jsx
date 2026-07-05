@@ -3,7 +3,7 @@ import { api } from '../api/client.js';
 import ApiStatusBanner from '../components/ApiStatusBanner.jsx';
 import ProcessStepper from '../components/ProcessStepper.jsx';
 import { demoDashboard } from './demoData.js';
-import { extractArray, extractObject, usePageData } from './pageHelpers.js';
+import { extractArray, extractObject, formatDetails, usePageData } from './pageHelpers.js';
 
 const metricLabels = [
   ['total_source_records', 'Total source records'],
@@ -72,7 +72,7 @@ export default function Dashboard() {
               {recentActivity.map((item, index) => (
                 <li key={`${item.event_type}-${index}`}>
                   <strong>{item.event_type?.replace(/_/g, ' ')}</strong>
-                  <div>{item.details}</div>
+                  <div>{formatDetails(item.details)}</div>
                   <div className="muted-text">{item.actor} · {item.event_ts}</div>
                 </li>
               ))}

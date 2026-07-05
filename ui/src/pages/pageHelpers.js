@@ -88,6 +88,16 @@ export function buildEvidence(source = {}, golden = {}, similarities = {}) {
   });
 }
 
+export function formatDetails(details) {
+  if (!details) return '';
+  if (typeof details === 'string') return details;
+  if (typeof details === 'object' && !Array.isArray(details)) {
+    const values = Object.values(details).filter(Boolean);
+    return values.join(' · ') || JSON.stringify(details);
+  }
+  return String(details);
+}
+
 export function describeStrength(score) {
   const numeric = Number(score || 0);
   if (numeric > 0.85) return 'Strong match';

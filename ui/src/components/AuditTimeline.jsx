@@ -1,3 +1,5 @@
+import { formatDetails } from '../pages/pageHelpers.js';
+
 export default function AuditTimeline({ events = [] }) {
   if (!events.length) {
     return <div className="empty-state">No audit events available.</div>;
@@ -14,7 +16,7 @@ export default function AuditTimeline({ events = [] }) {
               <span>{event.event_ts || 'Unknown time'}</span>
             </div>
             <div className="muted-text">Actor: {event.actor || 'System'}</div>
-            <div>{event.details || 'No extra details provided.'}</div>
+            <div>{formatDetails(event.details) || 'No extra details provided.'}</div>
           </div>
         </div>
       ))}
