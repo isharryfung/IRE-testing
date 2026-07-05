@@ -23,7 +23,10 @@ function normalizeFeatureRow(row) {
 
 export default function MatchingFeatureSettings() {
   const { loading, error, data } = usePageData(() => api.getMatchingFeatures(), demoMatchingFeatures, []);
-  const rows = extractArray(data, ['items', 'features'], demoMatchingFeatures).map(normalizeFeatureRow);
+  const rows = useMemo(
+    () => extractArray(data, ['items', 'features'], demoMatchingFeatures).map(normalizeFeatureRow),
+    [data],
+  );
   const [draftRows, setDraftRows] = useState(rows);
   const [message, setMessage] = useState('');
 
