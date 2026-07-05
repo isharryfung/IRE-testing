@@ -35,6 +35,10 @@ export default function SourceDetail() {
   const candidates = extractArray(data.candidates, ['items', 'candidates'], fallback.candidates);
   const history = extractArray(data.history, ['items', 'events'], fallback.history);
   const bestCandidate = candidates[0];
+  const rawPayload = record?.raw_payload;
+  const rawPayloadText = typeof rawPayload === 'string'
+    ? rawPayload
+    : JSON.stringify(rawPayload || {}, null, 2);
 
   return (
     <div className="page-stack">
@@ -42,7 +46,7 @@ export default function SourceDetail() {
       <ApiStatusBanner error={error} />
       {loading && <div className="card subtle">Loading source record…</div>}
       <div className="two-col">
-        <div className="card"><h3>Raw payload</h3><pre className="code-block">{record.raw_payload || '{}'}</pre></div>
+        <div className="card"><h3>Raw payload</h3><pre className="code-block">{rawPayloadText}</pre></div>
         <div className="card"><h3>Normalized values</h3><pre className="code-block">{JSON.stringify(normalized || {}, null, 2)}</pre></div>
       </div>
       <div className="card">
