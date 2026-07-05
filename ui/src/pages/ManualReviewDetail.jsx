@@ -12,7 +12,7 @@ import { extractArray, usePageData } from './pageHelpers.js';
 export default function ManualReviewDetail() {
   const { taskId } = useParams();
   const fallback = useMemo(() => demoReviewTasks.find((item) => item.task_id === taskId) || demoReviewTasks[0], [taskId]);
-  const [form, setForm] = useState({ action: 'accept_merge', notes: '', golden_id: fallback.candidate?.record_id || '' });
+  const [form, setForm] = useState({ reviewer: '', decision: 'accept_merge', notes: '', selected_golden_id: fallback.candidate?.record_id || '' });
   const [submitMessage, setSubmitMessage] = useState('');
   const { loading, error, data } = usePageData(
     async () => {
@@ -57,8 +57,9 @@ export default function ManualReviewDetail() {
       <div className="two-col">
         <form className="card form-grid" onSubmit={handleSubmit}>
           <h3>Decision form</h3>
-          <label className="field"><span>Action</span><select value={form.action} onChange={(event) => setForm({ ...form, action: event.target.value })}><option value="accept_merge">Accept Merge</option><option value="reject_candidate">Reject Candidate</option><option value="create_new_golden">Create New Golden</option><option value="escalate">Escalate</option><option value="request_more_info">Request More Info</option></select></label>
-          <label className="field"><span>Golden ID (if applicable)</span><input value={form.golden_id} onChange={(event) => setForm({ ...form, golden_id: event.target.value })} /></label>
+          <label className="field"><span>Reviewer</span><input value={form.reviewer} onChange={(event) => setForm({ ...form, reviewer: event.target.value })} placeholder="Your name or ID" required /></label>
+          <label className="field"><span>Action</span><select value={form.decision} onChange={(event) => setForm({ ...form, decision: event.target.value })}><option value="accept_merge">Accept Merge</option><option value="reject_candidate">Reject Candidate</option><option value="create_new_golden">Create New Golden</option><option value="escalate">Escalate</option><option value="request_more_info">Request More Info</option></select></label>
+          <label className="field"><span>Golden ID (if applicable)</span><input value={form.selected_golden_id} onChange={(event) => setForm({ ...form, selected_golden_id: event.target.value })} /></label>
           <label className="field full-width"><span>Notes</span><textarea rows="5" value={form.notes} onChange={(event) => setForm({ ...form, notes: event.target.value })} /></label>
           <div className="button-row"><button type="submit" className="button primary">Submit Decision</button></div>
           {submitMessage && <div className="muted-text">{submitMessage}</div>}
