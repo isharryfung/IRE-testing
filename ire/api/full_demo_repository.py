@@ -722,6 +722,12 @@ class FullDemoRepository(DemoRepository):
 
     def create_manual_review_task(self, task: ManualReviewTask) -> ManualReviewTask:
         super().create_manual_review_task(task)
+        candidates_for_source = sorted(
+            [item for item in self._match_candidate_details.values() if item.get('source_record_id') == task.source_record_id],
+            key=lambda c: (c.get('rank_order', 999), -(c.get('total_score') or 0)),
+        )
+        best_candidate = candidates_for_source[0] if candidates_for_source else {}
+        safety_flags = best_candidate.get('evidence_summary', {}).get('safety_flags', [])
         self._manual_review_task_details[task.task_id] = {
             'task_id': task.task_id,
             'source_record_id': task.source_record_id,
@@ -734,7 +740,7 @@ class FullDemoRepository(DemoRepository):
             'created_at': _now_iso(),
             'resolved_at': None,
             'notes': '',
-            'safety_flags': [],
+            'safety_flags': safety_flags,
         }
         return task
 
@@ -1279,6 +1285,8 @@ class FullDemoRepository(DemoRepository):
         ]
         if not payload['candidates']:
             payload['candidates'] = [item for item in self.list_match_candidates(task['source_record_id'])]
+        if not payload.get('recommended_decision') and payload['candidates']:
+            payload['recommended_decision'] = payload['candidates'][0].get('decision_hint', '')
         return payload
 
     def assign_review_task(self, task_id: str, assigned_to: str, actor: str = 'api') -> Dict[str, Any]:
