@@ -50,7 +50,7 @@ export default function ManualReviewDetail() {
         </div>
         <div className="card">
           <h3>Candidate Golden Records</h3>
-          <div className="table-wrap"><table className="data-table"><thead><tr><th>Golden ID</th><th>Name</th><th>Score</th><th>Decision</th></tr></thead><tbody>{(task.candidates || []).map((candidate) => <tr key={candidate.golden_id}><td>{candidate.golden_id}</td><td>{candidate.name}</td><td>{Math.round((candidate.score || 0) * 100)}%</td><td><DecisionBadge decision={candidate.decision} /></td></tr>)}</tbody></table></div>
+          <div className="table-wrap"><table className="data-table"><thead><tr><th>Golden ID</th><th>Name</th><th>Score</th><th>Decision</th></tr></thead><tbody>{(task.candidates || []).map((candidate) => <tr key={candidate.golden_id}><td>{candidate.golden_id}</td><td>{candidate.golden_record?.canonical_name ?? candidate.name}</td><td>{Math.round(((candidate.total_score ?? candidate.score) || 0) * 100)}%</td><td><DecisionBadge decision={candidate.decision_hint ?? candidate.decision} /></td></tr>)}</tbody></table></div>
         </div>
       </div>
       <div className="card"><h3>Evidence for best candidate</h3><EvidenceTable features={bestCandidate.features || []} /></div>
