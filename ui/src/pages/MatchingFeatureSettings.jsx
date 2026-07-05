@@ -4,9 +4,26 @@ import ApiStatusBanner from '../components/ApiStatusBanner.jsx';
 import { demoMatchingFeatures } from './demoData.js';
 import { extractArray, usePageData } from './pageHelpers.js';
 
+function normalizeFeatureRow(row) {
+  return {
+    id: row.id || row.feature_id,
+    feature: row.feature || row.feature_name,
+    display_label: row.display_label || row.feature_name || row.feature,
+    enabled: row.enabled ?? row.is_enabled ?? false,
+    priority: row.priority ?? 0,
+    algorithm: row.algorithm || '—',
+    auto_merge_eligible: row.auto_merge_eligible ?? row.is_auto_merge_eligible ?? false,
+    blocking: row.blocking ?? row.is_blocking ?? false,
+    visible_in_review: row.visible_in_review ?? row.is_visible_in_review ?? false,
+    feature_type: row.feature_type || 'profile',
+    is_manual_review_only: row.is_manual_review_only ?? false,
+    is_active: row.is_active ?? true,
+  };
+}
+
 export default function MatchingFeatureSettings() {
   const { loading, error, data } = usePageData(() => api.getMatchingFeatures(), demoMatchingFeatures, []);
-  const rows = extractArray(data, ['items', 'features'], demoMatchingFeatures);
+  const rows = extractArray(data, ['items', 'features'], demoMatchingFeatures).map(normalizeFeatureRow);
   const [draftRows, setDraftRows] = useState(rows);
   const [message, setMessage] = useState('');
 
@@ -19,7 +36,20 @@ export default function MatchingFeatureSettings() {
 
   async function handleSave() {
     try {
-      await Promise.all(calculatedRows.map((row) => api.updateMatchingFeature(row.id, row)));
+      await Promise.all(calculatedRows.map((row) => api.updateMatchingFeature(row.id, {
+        feature_id: row.id,
+        feature_name: row.feature,
+        display_label: row.display_label,
+        feature_type: row.feature_type,
+        is_enabled: row.enabled,
+        priority: Number(row.priority || 0),
+        algorithm: row.algorithm,
+        is_auto_merge_eligible: row.auto_merge_eligible,
+        is_manual_review_only: row.is_manual_review_only,
+        is_blocking: row.blocking,
+        is_visible_in_review: row.visible_in_review,
+        is_active: row.is_active,
+      })));
       setMessage('Feature settings saved.');
     } catch {
       setMessage('Backend unavailable. Changes remain visible for demo use.');
