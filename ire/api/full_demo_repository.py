@@ -1353,6 +1353,33 @@ class FullDemoRepository(DemoRepository):
     def list_duplicate_candidates_data(self) -> List[Dict[str, Any]]:
         return sorted((_copy_json(item) for item in self._duplicate_candidates.values()), key=lambda item: item['similarity_score'], reverse=True)
 
+    def create_duplicate_candidate(self, golden_id_a: str, golden_id_b: str, detection_method: str = 'manual-flag', actor: str = 'api') -> Dict[str, Any]:
+        if self._golden_record_details.get(golden_id_a) is None:
+            raise KeyError(golden_id_a)
+        if self._golden_record_details.get(golden_id_b) is None:
+            raise KeyError(golden_id_b)
+        # Return existing pair if already flagged
+        for dup in self._duplicate_candidates.values():
+            if {dup['golden_id_a'], dup['golden_id_b']} == {golden_id_a, golden_id_b}:
+                return self.get_duplicate_candidate_detail(dup['duplicate_id'])
+        dup_id = f"DUP-{len(self._duplicate_candidates) + 1:03d}"
+        item: Dict[str, Any] = {
+            'duplicate_id': dup_id,
+            'golden_id_a': golden_id_a,
+            'golden_id_b': golden_id_b,
+            'similarity_score': 0.0,
+            'status': 'open',
+            'detection_method': detection_method,
+            'created_at': _now_iso(),
+            'resolved_at': None,
+        }
+        self._duplicate_candidates[dup_id] = item
+        self._append_audit(
+            event_type='duplicate_candidate', entity_type='duplicate_candidate',
+            entity_id=dup_id, actor=actor, action='create', new_value=item,
+        )
+        return self.get_duplicate_candidate_detail(dup_id)
+
     def get_duplicate_candidate_detail(self, duplicate_id: str) -> Optional[Dict[str, Any]]:
         duplicate = self._duplicate_candidates.get(duplicate_id)
         if duplicate is None:

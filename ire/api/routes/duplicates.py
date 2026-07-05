@@ -8,11 +8,31 @@ from pydantic import BaseModel
 router = APIRouter(tags=['duplicates'])
 
 
+class CreateDuplicatePayload(BaseModel):
+    golden_id_a: str
+    golden_id_b: str
+    detection_method: str = 'manual-flag'
+    actor: str = 'api'
+
+
 class DuplicateDecisionPayload(BaseModel):
     decision: str
     target_golden_id: Optional[str] = None
     notes: str = ''
     actor: str = 'api'
+
+
+@router.post('/ire/golden-duplicates', status_code=201)
+def create_duplicate(request: Request, payload: CreateDuplicatePayload) -> dict:
+    try:
+        return request.app.state.repo.create_duplicate_candidate(
+            payload.golden_id_a,
+            payload.golden_id_b,
+            detection_method=payload.detection_method,
+            actor=payload.actor,
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail='Golden record not found') from exc
 
 
 @router.get('/ire/golden-duplicates')
