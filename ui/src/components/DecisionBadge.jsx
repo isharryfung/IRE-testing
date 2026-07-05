@@ -11,11 +11,15 @@ const DECISION_STYLES = {
 };
 
 export default function DecisionBadge({ decision }) {
-  if (!decision) {
+  const decisionValue = typeof decision === 'string'
+    ? decision
+    : (decision && typeof decision === 'object' ? decision.decision : '');
+
+  if (!decisionValue) {
     return <span className="badge muted">Unknown</span>;
   }
 
-  const label = decision.replace(/[-_]/g, ' ');
-  const tone = DECISION_STYLES[decision] || 'muted';
+  const label = decisionValue.replace(/[-_]/g, ' ');
+  const tone = DECISION_STYLES[decisionValue] || 'muted';
   return <span className={`badge ${tone}`}>{label}</span>;
 }
