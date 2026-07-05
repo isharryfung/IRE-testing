@@ -39,7 +39,21 @@ export default function IngestionCreate() {
     event.preventDefault();
     setSubmitState({ loading: true, error: null, result: null });
     try {
-      const result = await api.ingest(form);
+      const result = await api.ingest({
+        source_system: form.source_system,
+        source_pk: form.source_pk,
+        data: {
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          address: form.address,
+          hkid: form.hkid,
+          emplid: form.emplid,
+          studentid: form.studentid,
+          alumniid: form.alumniid,
+          remarks: form.remarks,
+        },
+      });
       setSubmitState({ loading: false, error: null, result });
     } catch (submitError) {
       setSubmitState({ loading: false, error: submitError.message, result: demoResult });
@@ -47,6 +61,14 @@ export default function IngestionCreate() {
   }
 
   const result = submitState.result;
+  const resultDecision = typeof result?.decision === 'string'
+    ? result
+    : (result?.decision || {});
+  const candidateRows = result?.candidates || (
+    resultDecision.best_golden_id
+      ? [{ golden_id: resultDecision.best_golden_id, score: resultDecision.confidence }]
+      : []
+  );
 
   return (
     <div className="page-stack">
@@ -98,17 +120,17 @@ export default function IngestionCreate() {
             <div className="empty-state">Submit a source record to view normalized values, decisioning, and candidate matches.</div>
           ) : (
             <div className="page-stack compact">
-              <div><strong>Decision:</strong> <DecisionBadge decision={result.decision} /></div>
-              <div><strong>Confidence:</strong> {Math.round((result.confidence || 0) * 100)}%</div>
-              <div><strong>Safety flags:</strong> <SafetyFlags flags={result.safety_flags || []} /></div>
+              <div><strong>Decision:</strong> <DecisionBadge decision={resultDecision.decision || result.decision} /></div>
+              <div><strong>Confidence:</strong> {Math.round(((resultDecision.confidence ?? result.confidence) || 0) * 100)}%</div>
+              <div><strong>Safety flags:</strong> <SafetyFlags flags={resultDecision.safety_flags || result.safety_flags || []} /></div>
               <div>
                 <strong>Normalized values</strong>
-                <pre className="code-block">{JSON.stringify(result.normalized_values || {}, null, 2)}</pre>
+                <pre className="code-block">{JSON.stringify(result.normalized_values || result.source_record?.raw_payload || {}, null, 2)}</pre>
               </div>
               <div>
                 <strong>Candidates</strong>
                 <ul>
-                  {(result.candidates || []).map((candidate) => (
+                  {candidateRows.map((candidate) => (
                     <li key={candidate.golden_id}>{candidate.golden_id} · {Math.round((candidate.score || 0) * 100)}%</li>
                   ))}
                 </ul>

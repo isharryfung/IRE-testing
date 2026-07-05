@@ -48,7 +48,7 @@ export default function GoldenDetail() {
         <div className="card">
           <h3>Canonical profile</h3>
           <div className="detail-grid">
-            {Object.entries({ Email: golden.email, Phone: golden.phone, HKID: golden.hkid, EmplId: golden.emplid, StudentID: golden.studentid, AlumniID: golden.alumniid, Address: golden.address, Status: golden.status, 'Person type': golden.person_type, 'Last updated': formatDate(golden.last_updated) }).map(([label, value]) => (
+            {Object.entries({ Email: golden.canonical_email || golden.email, Phone: golden.canonical_phone || golden.phone, HKID: golden.canonical_hkid || golden.hkid, EmplId: golden.canonical_emplid || golden.emplid, StudentID: golden.canonical_studentid || golden.studentid, AlumniID: golden.canonical_alumniid || golden.alumniid, Address: golden.canonical_address || golden.address, Status: golden.status, 'Person type': golden.person_type, 'Last updated': formatDate(golden.last_updated || golden.updated_at) }).map(([label, value]) => (
               <div key={label}><strong>{label}:</strong> {value || '—'}</div>
             ))}
           </div>
