@@ -19,7 +19,10 @@ export default function SurvivorshipRuleDetail() {
   const { ruleId } = useParams();
   const fallback = useMemo(() => demoSurvivorshipRules.find((item) => item.id === ruleId) || { id: 'new', name: '', active: true, version: 1, description: '' }, [ruleId]);
   const { loading, error, data } = usePageData(() => api.getSurvivorshipRules(), demoSurvivorshipRules, [ruleId]);
-  const rows = extractArray(data, ['items', 'rules'], demoSurvivorshipRules).map(normalizeRuleRow);
+  const rows = useMemo(
+    () => extractArray(data, ['items', 'rules'], demoSurvivorshipRules).map(normalizeRuleRow),
+    [data],
+  );
   const [form, setForm] = useState(fallback);
 
   useEffect(() => {
