@@ -15,7 +15,7 @@ export default function DuplicateGoldenQueue() {
       <ApiStatusBanner error={error} />
       {loading && <div className="card subtle">Loading duplicate golden pairs…</div>}
       <div className="card">
-        <div className="table-wrap"><table className="data-table clickable-table"><thead><tr><th>Golden A</th><th>Golden B</th><th>Similarity Score</th><th>Status</th><th>Detection Method</th><th>Created</th></tr></thead><tbody>{rows.map((row) => <tr key={row.duplicate_id} onClick={() => navigate(`/duplicates/${row.duplicate_id}`)}><td>{row.golden_a.golden_id}</td><td>{row.golden_b.golden_id}</td><td>{Math.round((row.similarity_score || 0) * 100)}%</td><td>{row.status}</td><td>{row.detection_method}</td><td>{row.created_at}</td></tr>)}</tbody></table></div>
+        <div className="table-wrap"><table className="data-table clickable-table"><thead><tr><th>Golden A</th><th>Golden B</th><th>Similarity Score</th><th>Status</th><th>Detection Method</th><th>Created</th></tr></thead><tbody>{rows.map((row) => <tr key={row.duplicate_id} onClick={() => navigate(`/duplicates/${row.duplicate_id}`)}><td>{row.golden_a?.golden_id || row.golden_id_a || '—'}</td><td>{row.golden_b?.golden_id || row.golden_id_b || '—'}</td><td>{Math.round((row.similarity_score || 0) * 100)}%</td><td>{row.status}</td><td>{row.detection_method}</td><td>{row.created_at}</td></tr>)}</tbody></table></div>
       </div>
     </div>
   );
