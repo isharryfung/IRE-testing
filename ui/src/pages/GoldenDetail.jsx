@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { api } from '../api/client.js';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ApiStatusBanner from '../components/ApiStatusBanner.jsx';
 import AuditTimeline from '../components/AuditTimeline.jsx';
 import { useRole } from '../components/Layout.jsx';
@@ -11,8 +11,10 @@ const tabs = ['Overview', 'Linked Sources', 'Field Provenance', 'Match History',
 
 export default function GoldenDetail() {
   const { goldenId } = useParams();
+  const navigate = useNavigate();
   const { role } = useRole();
   const [tab, setTab] = useState('Overview');
+  const [actionMessage, setActionMessage] = useState('');
   const fallback = useMemo(() => {
     const golden = demoGoldenRecords.find((item) => item.golden_id === goldenId) || demoGoldenRecords[0];
     return { golden, sourceLinks: golden.source_links || [], provenance: golden.field_provenance || [], history: golden.history || [], audit: demoAuditEvents };
@@ -39,6 +41,26 @@ export default function GoldenDetail() {
   const history = extractArray(data.history, ['items', 'events'], fallback.history);
   const audit = extractArray(data.audit, ['items', 'events'], fallback.audit);
 
+  function handleStewardAction(action) {
+    if (action === 'link' || action === 'unlink') {
+      setTab('Linked Sources');
+      setActionMessage('Opened Linked Sources for this profile.');
+      return;
+    }
+    if (action === 'override') {
+      setTab('Field Provenance');
+      setActionMessage('Opened Field Provenance for this profile.');
+      return;
+    }
+    if (action === 'duplicate') {
+      navigate('/duplicates');
+      return;
+    }
+    if (action === 'merge') {
+      navigate('/duplicates');
+    }
+  }
+
   return (
     <div className="page-stack">
       <div className="page-header"><div><h2>{golden.canonical_name || golden.name}</h2><p className="muted-text">Golden ID: {golden.golden_id}</p></div></div>
@@ -56,13 +78,16 @@ export default function GoldenDetail() {
         <div className="card">
           <h3>Steward actions</h3>
           {role === 'Viewer' ? <div className="empty-state">Viewer role can inspect but cannot change links or survivorship outcomes.</div> : (
-            <div className="button-row wrap">
-              <button className="button">Link Source Record</button>
-              <button className="button">Unlink Source Record</button>
-              <button className="button">Apply Field Override</button>
-              <button className="button">Flag as Duplicate</button>
-              <button className="button">Merge with Another Golden</button>
-            </div>
+            <>
+              <div className="button-row wrap">
+                <button type="button" className="button" onClick={() => handleStewardAction('link')}>Link Source Record</button>
+                <button type="button" className="button" onClick={() => handleStewardAction('unlink')}>Unlink Source Record</button>
+                <button type="button" className="button" onClick={() => handleStewardAction('override')}>Apply Field Override</button>
+                <button type="button" className="button" onClick={() => handleStewardAction('duplicate')}>Flag as Duplicate</button>
+                <button type="button" className="button" onClick={() => handleStewardAction('merge')}>Merge with Another Golden</button>
+              </div>
+              {actionMessage && <div className="muted-text top-gap">{actionMessage}</div>}
+            </>
           )}
         </div>
       </div>
