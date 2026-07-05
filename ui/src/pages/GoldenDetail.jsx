@@ -41,7 +41,7 @@ export default function GoldenDetail() {
 
   return (
     <div className="page-stack">
-      <div className="page-header"><div><h2>{golden.name}</h2><p className="muted-text">Golden ID: {golden.golden_id}</p></div></div>
+      <div className="page-header"><div><h2>{golden.canonical_name || golden.name}</h2><p className="muted-text">Golden ID: {golden.golden_id}</p></div></div>
       <ApiStatusBanner error={error} />
       {loading && <div className="card subtle">Loading golden record…</div>}
       <div className="two-col">

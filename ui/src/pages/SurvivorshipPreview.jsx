@@ -35,7 +35,7 @@ export default function SurvivorshipPreview() {
       {loading && <div className="card subtle">Loading golden records…</div>}
       <div className="two-col">
         <div className="card form-grid">
-          <label className="field"><span>Select a Golden Record</span><select value={selected} onChange={(event) => setSelected(event.target.value)}>{goldens.map((golden) => <option key={golden.golden_id} value={golden.golden_id}>{golden.golden_id} · {golden.name}</option>)}</select></label>
+          <label className="field"><span>Select a Golden Record</span><select value={selected} onChange={(event) => setSelected(event.target.value)}>{goldens.map((golden) => <option key={golden.golden_id} value={golden.golden_id}>{golden.golden_id} · {golden.canonical_name || golden.name}</option>)}</select></label>
           <div className="button-row"><button className="button primary" onClick={handlePreview}>Preview survivorship</button></div>
         </div>
         <div className="card">

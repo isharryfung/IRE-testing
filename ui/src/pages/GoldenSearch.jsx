@@ -38,7 +38,7 @@ export default function GoldenSearch() {
             <tbody>
               {rows.length ? rows.map((row) => (
                 <tr key={row.golden_id} onClick={() => navigate(`/golden/${row.golden_id}`)}>
-                  <td>{row.golden_id}</td><td>{row.name}</td><td>{row.email || '—'}</td><td>{row.hkid || row.emplid || '—'}</td><td>{row.person_type || '—'}</td><td>{row.status || '—'}</td><td>{row.linked_sources ?? 0}</td><td>{formatDate(row.last_updated)}</td>
+                  <td>{row.golden_id}</td><td>{row.canonical_name || row.name}</td><td>{row.email || row.canonical_email || '—'}</td><td>{row.hkid || row.canonical_hkid || row.emplid || row.canonical_emplid || '—'}</td><td>{row.person_type || '—'}</td><td>{row.status || '—'}</td><td>{row.linked_sources ?? 0}</td><td>{formatDate(row.last_updated || row.updated_at)}</td>
                 </tr>
               )) : <tr><td colSpan="8" className="empty-cell">No data available.</td></tr>}
             </tbody>
