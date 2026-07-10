@@ -397,29 +397,32 @@ class FullDemoRepository(DemoRepository):
             self._merge_history_events[event.event_id] = event
             self._merge_history_details[event.event_id] = _copy_json(row)
 
+    def _add_field_values_for_link(self, link: Dict[str, Any]) -> None:
+        record = self._source_record_details.get(link['source_record_id'])
+        if record is None:
+            return
+        for field_name, golden_attr in _GOLDEN_FIELDS.items():
+            raw_value = record.get(f'raw_{field_name}')
+            if raw_value in (None, ''):
+                continue
+            field_value_id = f"GFV-{len(self._golden_field_values) + 1:03d}"
+            self._golden_field_values[field_value_id] = {
+                'field_value_id': field_value_id,
+                'golden_id': link['golden_id'],
+                'field_name': field_name,
+                'field_value': raw_value,
+                'source_record_id': record['source_record_id'],
+                'source_system_id': record['source_system_id'],
+                'applied_rule_id': 'SVR-DEFAULT',
+                'applied_at': link['created_at'],
+                'golden_field': golden_attr,
+            }
+
     def _build_initial_golden_field_values(self) -> None:
         for link in self._record_link_details.values():
             if not link.get('is_active'):
                 continue
-            record = self._source_record_details.get(link['source_record_id'])
-            if record is None:
-                continue
-            for field_name, golden_attr in _GOLDEN_FIELDS.items():
-                raw_value = record.get(f'raw_{field_name}')
-                if raw_value in (None, ''):
-                    continue
-                field_value_id = f"GFV-{len(self._golden_field_values) + 1:03d}"
-                self._golden_field_values[field_value_id] = {
-                    'field_value_id': field_value_id,
-                    'golden_id': link['golden_id'],
-                    'field_name': field_name,
-                    'field_value': raw_value,
-                    'source_record_id': record['source_record_id'],
-                    'source_system_id': record['source_system_id'],
-                    'applied_rule_id': 'SVR-DEFAULT',
-                    'applied_at': link['created_at'],
-                    'golden_field': golden_attr,
-                }
+            self._add_field_values_for_link(link)
 
     def _source_system_name(self, source_system_id: str) -> str:
         detail = self._source_system_details.get(source_system_id)
@@ -1046,6 +1049,7 @@ class FullDemoRepository(DemoRepository):
         }
         self._record_link_details[link_id] = detail
         self._record_links[link_id] = RecordLink(link_id=link_id, source_record_id=source_record_id, golden_id=golden_id, confidence=confidence, method=method, evidence_json=json.dumps(detail['evidence_json']))
+        self._add_field_values_for_link(detail)
         source_record = self._source_records[source_record_id]
         source_system = self._source_systems[source_record.system_id]
         updated = apply_survivorship(self._golden_records[golden_id], self._normalized_identities[source_record_id], source_record, source_system)
