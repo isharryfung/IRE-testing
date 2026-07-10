@@ -1,0 +1,60 @@
+[
+  {
+    "rule_id": "RULE-001",
+    "rule_name": "Internal Exact ID Auto Merge",
+    "description": "Trusted internal IDs auto-merge when an exact tier-1 identifier matches and no conflict exists.",
+    "rule_type": "deterministic",
+    "conditions": {
+      "source": "internal",
+      "requires": [
+        "hkid|emplid|studentid|alumniid"
+      ],
+      "decision": "auto-merge"
+    },
+    "is_active": true,
+    "version": 3,
+    "created_at": "2024-09-01T08:35:00Z",
+    "updated_at": "2024-09-05T08:00:00Z",
+    "created_by": "rule.admin"
+  },
+  {
+    "rule_id": "RULE-002",
+    "rule_name": "Strong Contact Auto Merge",
+    "description": "Name plus exact email and phone can auto-merge when no blocking flags are present.",
+    "rule_type": "probabilistic",
+    "conditions": {
+      "requires": [
+        "name",
+        "email",
+        "phone"
+      ],
+      "min_score": 0.85,
+      "decision": "auto-merge"
+    },
+    "is_active": true,
+    "version": 2,
+    "created_at": "2024-09-01T08:40:00Z",
+    "updated_at": "2024-09-04T13:00:00Z",
+    "created_by": "rule.admin"
+  },
+  {
+    "rule_id": "RULE-003",
+    "rule_name": "Safety Review Escalation",
+    "description": "Any tier-1 conflict, untrusted source, or narrow score gap goes to manual review.",
+    "rule_type": "safety",
+    "conditions": {
+      "flags": [
+        "tier1_conflict",
+        "multiple_high_candidates",
+        "low_score_gap",
+        "untrusted_source"
+      ],
+      "decision": "manual-review"
+    },
+    "is_active": true,
+    "version": 4,
+    "created_at": "2024-09-01T08:45:00Z",
+    "updated_at": "2024-09-06T08:00:00Z",
+    "created_by": "rule.admin"
+  }
+]

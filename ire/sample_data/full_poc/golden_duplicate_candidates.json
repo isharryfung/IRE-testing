@@ -1,0 +1,32 @@
+[
+  {
+    "duplicate_id": "DUP-001",
+    "golden_id_a": "GR-011",
+    "golden_id_b": "GR-012",
+    "similarity_score": 0.93,
+    "status": "open",
+    "detection_method": "name-phone-email",
+    "created_at": "2024-09-06T09:00:00Z",
+    "resolved_at": null
+  },
+  {
+    "duplicate_id": "DUP-002",
+    "golden_id_a": "GR-006",
+    "golden_id_b": "GR-007",
+    "similarity_score": 0.82,
+    "status": "under_review",
+    "detection_method": "name-address",
+    "created_at": "2024-09-06T09:05:00Z",
+    "resolved_at": null
+  },
+  {
+    "duplicate_id": "DUP-003",
+    "golden_id_a": "GR-004",
+    "golden_id_b": "GR-010",
+    "similarity_score": 0.55,
+    "status": "keep-both",
+    "detection_method": "phone-only",
+    "created_at": "2024-09-06T09:10:00Z",
+    "resolved_at": "2024-09-06T10:00:00Z"
+  }
+]

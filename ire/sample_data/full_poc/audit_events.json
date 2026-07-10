@@ -1,0 +1,340 @@
+[
+  {
+    "event_id": "AE-001",
+    "event_type": "source_record",
+    "entity_type": "source_record",
+    "entity_id": "SRC-HR-001",
+    "actor": "system",
+    "action": "ingest",
+    "old_value": null,
+    "new_value": {
+      "batch_id": "BATCH-001"
+    },
+    "event_ts": "2024-09-01T09:01:00Z",
+    "ip_address": "10.0.0.10",
+    "notes": "HR ingest"
+  },
+  {
+    "event_id": "AE-002",
+    "event_type": "golden_record",
+    "entity_type": "golden_record",
+    "entity_id": "GR-001",
+    "actor": "system",
+    "action": "merge",
+    "old_value": null,
+    "new_value": {
+      "source_record_id": "SRC-HR-001"
+    },
+    "event_ts": "2024-09-01T09:05:00Z",
+    "ip_address": "10.0.0.10",
+    "notes": "Created or enriched John golden"
+  },
+  {
+    "event_id": "AE-003",
+    "event_type": "source_record",
+    "entity_type": "source_record",
+    "entity_id": "SRC-SIS-001",
+    "actor": "system",
+    "action": "ingest",
+    "old_value": null,
+    "new_value": {
+      "batch_id": "BATCH-002"
+    },
+    "event_ts": "2024-09-01T10:10:00Z",
+    "ip_address": "10.0.0.11",
+    "notes": "SIS ingest"
+  },
+  {
+    "event_id": "AE-004",
+    "event_type": "record_link",
+    "entity_type": "record_link",
+    "entity_id": "LINK-002",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "golden_id": "GR-001"
+    },
+    "event_ts": "2024-09-01T10:10:30Z",
+    "ip_address": "10.0.0.11",
+    "notes": "Linked SIS student to John golden"
+  },
+  {
+    "event_id": "AE-005",
+    "event_type": "source_record",
+    "entity_type": "source_record",
+    "entity_id": "SRC-AL-001",
+    "actor": "system",
+    "action": "ingest",
+    "old_value": null,
+    "new_value": {
+      "batch_id": "BATCH-003"
+    },
+    "event_ts": "2024-09-01T11:00:00Z",
+    "ip_address": "10.0.0.12",
+    "notes": "Alumni ingest"
+  },
+  {
+    "event_id": "AE-006",
+    "event_type": "record_link",
+    "entity_type": "record_link",
+    "entity_id": "LINK-004",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "golden_id": "GR-002"
+    },
+    "event_ts": "2024-09-01T11:00:30Z",
+    "ip_address": "10.0.0.12",
+    "notes": "Linked alumni Jane to golden"
+  },
+  {
+    "event_id": "AE-007",
+    "event_type": "source_record",
+    "entity_type": "source_record",
+    "entity_id": "SRC-CRM-001",
+    "actor": "system",
+    "action": "ingest",
+    "old_value": null,
+    "new_value": {
+      "batch_id": "BATCH-004"
+    },
+    "event_ts": "2024-09-02T08:10:00Z",
+    "ip_address": "10.0.0.13",
+    "notes": "CRM ingest"
+  },
+  {
+    "event_id": "AE-008",
+    "event_type": "record_link",
+    "entity_type": "record_link",
+    "entity_id": "LINK-007",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "golden_id": "GR-005"
+    },
+    "event_ts": "2024-09-02T08:10:30Z",
+    "ip_address": "10.0.0.13",
+    "notes": "Strong contact auto-merge"
+  },
+  {
+    "event_id": "AE-009",
+    "event_type": "source_record",
+    "entity_type": "source_record",
+    "entity_id": "SRC-CRM-002",
+    "actor": "system",
+    "action": "ingest",
+    "old_value": null,
+    "new_value": {
+      "batch_id": "BATCH-004"
+    },
+    "event_ts": "2024-09-04T08:44:00Z",
+    "ip_address": "10.0.0.13",
+    "notes": "CRM unique contact ingest"
+  },
+  {
+    "event_id": "AE-010",
+    "event_type": "golden_record",
+    "entity_type": "golden_record",
+    "entity_id": "GR-010",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "source_record_id": "SRC-CRM-002"
+    },
+    "event_ts": "2024-09-04T08:45:00Z",
+    "ip_address": "10.0.0.13",
+    "notes": "Weak match created new golden"
+  },
+  {
+    "event_id": "AE-011",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-001",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "reason": "tier1_conflict"
+    },
+    "event_ts": "2024-09-03T10:05:00Z",
+    "ip_address": "10.0.0.14",
+    "notes": "Created David conflict task"
+  },
+  {
+    "event_id": "AE-012",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-002",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "reason": "multiple_high_candidates"
+    },
+    "event_ts": "2024-09-03T10:10:00Z",
+    "ip_address": "10.0.0.11",
+    "notes": "Created Alex ambiguity task"
+  },
+  {
+    "event_id": "AE-013",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-003",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "reason": "untrusted_source"
+    },
+    "event_ts": "2024-09-03T10:15:00Z",
+    "ip_address": "10.0.0.14",
+    "notes": "Created third-party evidence task"
+  },
+  {
+    "event_id": "AE-014",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-004",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "reason": "multiple_high_candidates"
+    },
+    "event_ts": "2024-09-03T10:20:00Z",
+    "ip_address": "10.0.0.14",
+    "notes": "Created Michael duplicate task"
+  },
+  {
+    "event_id": "AE-015",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-004",
+    "actor": "reviewer.demo",
+    "action": "decision",
+    "old_value": null,
+    "new_value": {
+      "decision": "accept_merge",
+      "selected_golden_id": "GR-011"
+    },
+    "event_ts": "2024-09-03T12:05:00Z",
+    "ip_address": "10.0.0.20",
+    "notes": "Resolved with HR-backed golden"
+  },
+  {
+    "event_id": "AE-016",
+    "event_type": "manual_review_task",
+    "entity_type": "manual_review_task",
+    "entity_id": "TASK-005",
+    "actor": "steward.demo",
+    "action": "decision",
+    "old_value": null,
+    "new_value": {
+      "decision": "create_new_golden"
+    },
+    "event_ts": "2024-09-03T15:10:00Z",
+    "ip_address": "10.0.0.21",
+    "notes": "Split ambiguous volunteer"
+  },
+  {
+    "event_id": "AE-017",
+    "event_type": "record_link",
+    "entity_type": "record_link",
+    "entity_id": "LINK-015",
+    "actor": "data.steward",
+    "action": "unlink",
+    "old_value": {
+      "golden_id": "GR-004"
+    },
+    "new_value": {
+      "golden_id": "GR-004",
+      "is_active": false
+    },
+    "event_ts": "2024-09-05T14:20:00Z",
+    "ip_address": "10.0.0.22",
+    "notes": "Removed legacy CRM link"
+  },
+  {
+    "event_id": "AE-018",
+    "event_type": "duplicate_candidate",
+    "entity_type": "duplicate_candidate",
+    "entity_id": "DUP-001",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "golden_id_a": "GR-011",
+      "golden_id_b": "GR-012"
+    },
+    "event_ts": "2024-09-06T09:00:00Z",
+    "ip_address": "10.0.0.15",
+    "notes": "Detected Michael/Mike duplicate"
+  },
+  {
+    "event_id": "AE-019",
+    "event_type": "duplicate_candidate",
+    "entity_type": "duplicate_candidate",
+    "entity_id": "DUP-002",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "golden_id_a": "GR-006",
+      "golden_id_b": "GR-007"
+    },
+    "event_ts": "2024-09-06T09:05:00Z",
+    "ip_address": "10.0.0.15",
+    "notes": "Detected Alex duplicate"
+  },
+  {
+    "event_id": "AE-020",
+    "event_type": "matching_rule",
+    "entity_type": "matching_rule",
+    "entity_id": "RULE-003",
+    "actor": "rule.admin",
+    "action": "update",
+    "old_value": {
+      "version": 3
+    },
+    "new_value": {
+      "version": 4
+    },
+    "event_ts": "2024-09-06T08:00:00Z",
+    "ip_address": "10.0.0.30",
+    "notes": "Added low-gap manual review escalation"
+  },
+  {
+    "event_id": "AE-021",
+    "event_type": "survivorship_rule",
+    "entity_type": "survivorship_rule",
+    "entity_id": "SVR-005",
+    "actor": "rule.admin",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "field_name": "email"
+    },
+    "event_ts": "2024-09-01T08:50:00Z",
+    "ip_address": "10.0.0.30",
+    "notes": "Seed survivorship rules"
+  },
+  {
+    "event_id": "AE-022",
+    "event_type": "source_system",
+    "entity_type": "source_system",
+    "entity_id": "SYS-005",
+    "actor": "system",
+    "action": "create",
+    "old_value": null,
+    "new_value": {
+      "name": "ThirdParty"
+    },
+    "event_ts": "2024-09-01T08:20:00Z",
+    "ip_address": "10.0.0.1",
+    "notes": "Registered source system"
+  }
+]
