@@ -516,6 +516,13 @@ class FullDemoRepository(DemoRepository):
         ingestion_status = str(filters.get('ingestion_status') or '').strip().lower()
         if ingestion_status and str(source.get('ingestion_status', '')).lower() != ingestion_status:
             return False
+        linked_status = str(filters.get('linked_status') or '').strip().lower()
+        if linked_status:
+            has_link = self._active_link_for_source(source['source_record_id']) is not None
+            if linked_status == 'linked' and not has_link:
+                return False
+            if linked_status == 'not linked' and has_link:
+                return False
         return True
 
     def _golden_matches(self, golden: Dict[str, Any], filters: Dict[str, Any]) -> bool:
@@ -1141,6 +1148,14 @@ class FullDemoRepository(DemoRepository):
         payload['links'] = [
             _copy_json(link) for link in self._record_link_details.values() if link['source_record_id'] == source_record_id
         ]
+        # UI-friendly aliases used by the Source Search table
+        payload['source_system'] = payload['source_system_name']
+        payload['name'] = detail.get('raw_name', '')
+        payload['email'] = detail.get('raw_email', '')
+        payload['status'] = detail.get('ingestion_status', '')
+        payload['created_at'] = detail.get('ingest_ts', '')
+        active_link = payload['active_link']
+        payload['linked_golden'] = active_link['golden_id'] if active_link else None
         return payload
 
     def get_normalized_identity_detail(self, source_record_id: str) -> Optional[Dict[str, Any]]:

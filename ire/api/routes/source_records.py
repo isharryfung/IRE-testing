@@ -41,6 +41,7 @@ def list_source_records(
     alumniid: Optional[str] = None,
     batch_id: Optional[str] = None,
     ingestion_status: Optional[str] = None,
+    linked_status: Optional[str] = None,
 ) -> list[dict]:
     return request.app.state.repo.list_source_records({
         'source_pk': source_pk,
@@ -55,6 +56,7 @@ def list_source_records(
         'alumniid': alumniid,
         'batch_id': batch_id,
         'ingestion_status': ingestion_status,
+        'linked_status': linked_status,
     })
 
 
