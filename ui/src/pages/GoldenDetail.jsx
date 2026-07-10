@@ -418,7 +418,7 @@ export default function GoldenDetail() {
                     <tbody>
                       {sourceLinks.map((row) => (
                         <tr
-                          key={row.source_record_id}
+                          key={row.link_id || row.source_record_id}
                           onClick={linkMode !== 'unlink' ? () => navigate(`/sources/${row.source_record_id}`) : undefined}
                           style={linkMode !== 'unlink' ? { cursor: 'pointer' } : undefined}
                         >

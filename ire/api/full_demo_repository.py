@@ -967,7 +967,7 @@ class FullDemoRepository(DemoRepository):
                 'source_record': self.get_source_record_detail(link['source_record_id']),
             }
             for link in self._record_link_details.values()
-            if link['golden_id'] == golden_id
+            if link['golden_id'] == golden_id and link.get('is_active')
         ]
         return sorted(links, key=lambda item: item['created_at'], reverse=True)
 
